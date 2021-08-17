@@ -2,3 +2,8 @@ agm-map {
     height: 400px;
     width: 800px;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color:gray;
+    opacity: 1; /* Firefox */
+  }

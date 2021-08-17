@@ -1,5 +1,5 @@
 import { Local } from './../../models/local';
-import { LocalService } from '../../../services/local.service';
+import { LocalService } from '../../services/local.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';

@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { addSyntheticLeadingComment } from 'typescript';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
 })
-export class AppComponent {
+export class MapComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
   locales: any = [
     {
       nombre: 'Mc Auto',
@@ -53,6 +59,5 @@ export class AppComponent {
       this.located = true;
     })
   }
+
 }
-
-
