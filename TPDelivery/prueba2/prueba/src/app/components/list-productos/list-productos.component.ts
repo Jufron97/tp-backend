@@ -2,7 +2,7 @@ import { Local, Producto } from './../../models/local';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LocalService } from 'src/services/local.service';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-list-productos',

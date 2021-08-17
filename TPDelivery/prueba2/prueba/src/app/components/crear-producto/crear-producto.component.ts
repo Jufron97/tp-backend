@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Producto } from 'src/app/models/local';
-import { LocalService } from 'src/services/local.service';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-crear-producto',
