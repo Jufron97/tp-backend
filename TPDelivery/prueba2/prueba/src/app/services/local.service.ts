@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Producto } from '../app/models/local';
+import { Local, Producto } from '../models/local';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,13 @@ import { Producto } from '../app/models/local';
 export class LocalService {
 
   url = 'http://localhost:4000/'; 
+  
+  locales: Local[] = [];
+
   constructor(private http: HttpClient) { }
 
-  getLocales() :Observable<any> {
-    return this.http.get(this.url);
+  getLocales() {
+    return this.http.get<Local[]>(this.url);
   }
 
   getNombreLocal(id: string) :Observable<any> {

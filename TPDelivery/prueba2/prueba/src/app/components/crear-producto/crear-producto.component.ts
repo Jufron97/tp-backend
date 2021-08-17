@@ -10,6 +10,7 @@ import { LocalService } from 'src/app/services/local.service';
   templateUrl: './crear-producto.component.html',
   styleUrls: ['./crear-producto.component.css']
 })
+
 export class CrearProductoComponent implements OnInit {
 
   titulo = 'Crear Producto';

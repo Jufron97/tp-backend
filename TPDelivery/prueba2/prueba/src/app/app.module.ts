@@ -14,6 +14,10 @@ import { CrearLocalComponent } from './components/crear-local/crear-local.compon
 import { CrearProductoComponent } from './components/crear-producto/crear-producto.component';
 import { ListProductosComponent } from './components/list-productos/list-productos.component';
 import { ListLocalComponent } from './components/list-local/list-local.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LocalesComponent } from './components/locales/locales.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,10 @@ import { ListLocalComponent } from './components/list-local/list-local.component
     CrearProductoComponent,
     ListProductosComponent,
     ListLocalComponent,
+    LandingComponent,
+    NavbarComponent,
+    LocalesComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
