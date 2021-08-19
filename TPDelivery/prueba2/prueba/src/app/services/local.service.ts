@@ -8,9 +8,11 @@ import { Local, Producto } from '../models/local';
 })
 export class LocalService {
 
-  url = 'http://localhost:4000/'; 
-  
+  url = 'http://localhost:4000/';
+
   locales: Local[] = [];
+  selectedLocal: Local | undefined;
+  productos: Producto[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -18,31 +20,31 @@ export class LocalService {
     return this.http.get<Local[]>(this.url);
   }
 
-  getNombreLocal(id: string) :Observable<any> {
-    return this.http.get(this.url+id+'/get-name');
+  getNombreLocal(id: string): Observable<any> {
+    return this.http.get(this.url + id + '/get-name');
   }
 
-  deleteLocal(id: string) :Observable<any>{
-    return this.http.delete(this.url+id);
+  deleteLocal(id: string): Observable<any> {
+    return this.http.delete(this.url + id);
   }
 
-  getProductos(id: string) :Observable<any> {
-    return this.http.get(this.url+id+'/list-product');
+  getProductos(id: string): Observable<any> {
+    return this.http.get(this.url + id + '/list-product');
   }
 
-  guardarProductos(id: string, prod: Producto) :Observable<any>{
-    return this.http.post(this.url+id+'/add-product',prod);
+  guardarProductos(id: string, prod: Producto): Observable<any> {
+    return this.http.post(this.url + id + '/add-product', prod);
   }
 
-  deleteProductos(idL: string, idP: string) :Observable<any>{
-    return this.http.delete(this.url+idL+'/delete-product/'+idP);
+  deleteProductos(idL: string, idP: string): Observable<any> {
+    return this.http.delete(this.url + idL + '/delete-product/' + idP);
   }
 
-  obtenerProductos( idL: any, idP: any ) :Observable<any>{
-    return this.http.get(this.url+idL+'/get-product/'+idP);
+  obtenerProductos(idL: any, idP: any): Observable<any> {
+    return this.http.get(this.url + idL + '/get-product/' + idP);
   }
 
-  editarProductos( idL: string, idP: string, producto:Producto ) :Observable<any>{
-    return this.http.put(this.url+idL+'/edit-product/'+idP, producto);
+  editarProductos(idL: string, idP: string, producto: Producto): Observable<any> {
+    return this.http.put(this.url + idL + '/edit-product/' + idP, producto);
   }
 }

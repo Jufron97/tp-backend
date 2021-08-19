@@ -3,7 +3,7 @@
 <router-outlet></router-outlet>
 
 <br><br>
-<div style="height:20vh; margin-top:0%; width:100%">
+<div *ngIf="true" style="height:20vh; margin-top:0%; width:100%">
 <div class="container mt-2">
     <div class="row justify-content-center align-items-center h-20">
 <agm-map float-mid [latitude]="lat" [longitude]="lng" [zoom]="zoom">
