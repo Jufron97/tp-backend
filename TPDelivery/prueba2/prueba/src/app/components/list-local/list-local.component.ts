@@ -45,4 +45,11 @@ export class ListLocalComponent implements OnInit {
     })
   }
 
+  cargaProductos(local:Local){
+
+    this.localService.selectedLocal=local;
+
+  }
+
+
 }

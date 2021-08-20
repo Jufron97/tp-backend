@@ -19,6 +19,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LocalesComponent } from './components/locales/locales.component';
 import { MapComponent } from './components/map/map.component';
 import { ProductosComponent } from './components/productos/productos.component';
+import { AbmLocalComponent } from './components/abm-local/abm-local.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ProductosComponent } from './components/productos/productos.component';
     LocalesComponent,
     MapComponent,
     ProductosComponent,
+    AbmLocalComponent,
   ],
   imports: [
     BrowserModule,

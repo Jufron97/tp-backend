@@ -21,7 +21,7 @@
                               <i class="fas fa-trash text-danger" (click)="open(content,local._id)"></i>
                             </td>
                             <td width='70px'>
-                              <button [routerLink]="['/listar-producto',local._id]" class="btn btn-secondary">Productos</button>
+                              <button (click)="cargaProductos(local)" class="btn btn-secondary">Productos</button>
                             </td>
                           </tr>
                         </tbody>
@@ -47,3 +47,5 @@
     <button type="button" class="btn btn-danger" (click)="d('Cross click')" (click)="deleteLocal(id)">Eliminar</button>
   </div>
 </ng-template>
+
+

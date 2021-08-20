@@ -13,8 +13,7 @@ export class ListProductosComponent implements OnInit {
 
   idL: any;
   nomLoc: any;
-  listProducto: Producto[] = [];;
-  constructor( private localService:LocalService, private toastr : ToastrService, private router:Router, private aRouter: ActivatedRoute) { 
+  constructor( public localService:LocalService, private toastr : ToastrService, private router:Router, private aRouter: ActivatedRoute) { 
     this.idL = this.aRouter.snapshot.paramMap.get('idL');
   }
 
@@ -25,8 +24,7 @@ export class ListProductosComponent implements OnInit {
 
   obtenerProductos(idL : any) {
     this.localService.getProductos(idL).subscribe( data => {
-      this.listProducto = data;
-      console.log(this.listProducto)
+      this.localService.productos = data;
     }, error => {
       console.log(error);
     })
