@@ -2,16 +2,16 @@
     <div class="container-fluid h-100 ms-0 w-100">
         <div class="row h-100 w-100">
             <div class="col-md-6">
-                <app-crear-local></app-crear-local>
 
-                <app-list-local></app-list-local>
+                <app-list-local (toggleChanged)="toggleChanged($event)"></app-list-local>
 
             </div>
             <div class="col-md-6">
-                <app-crear-producto></app-crear-producto>
-
-                <app-list-productos></app-list-productos>
+                <app-list-productos *ngIf="toggleProductos"></app-list-productos>
             </div>
+
+            <app-crear-local></app-crear-local>
+            <app-crear-producto></app-crear-producto>
 
         </div>
     </div>

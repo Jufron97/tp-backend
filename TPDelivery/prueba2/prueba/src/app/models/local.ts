@@ -1,12 +1,11 @@
 export class Local {
-    _id: string;
+    _id?: string;
     nombre: string;
     productos: Producto[];
 
     constructor(nom: string) {
         this.nombre = nom;
         this.productos = [];
-        this._id = "";
     }
 
     devNombre() {

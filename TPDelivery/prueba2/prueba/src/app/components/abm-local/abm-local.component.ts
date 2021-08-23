@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AbmLocalComponent implements OnInit {
 
+  toggleProductos: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  toggleChanged(event: any) {
+    this.toggleProductos = event;
+  }
+
+  
 
 }
