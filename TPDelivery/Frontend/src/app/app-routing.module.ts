@@ -7,6 +7,7 @@ import { ListProductosComponent } from './components/list-productos/list-product
 import { LandingComponent } from './components/landing/landing.component';
 import { LocalesComponent } from './components/locales/locales.component';
 import { ProductosComponent } from './components/productos/productos.component';
+import { AbmLocalComponent } from './components/abm-local/abm-local.component';
 
 const routes: Routes = [
   { path:'', component:LandingComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'editar-producto/:idL/:idP', component: CrearProductoComponent},
   { path:'locales', component:LocalesComponent},
   { path:'productos', component:ProductosComponent},
+  { path: 'abm-local', component: AbmLocalComponent},
   { path: '**', redirectTo: '', pathMatch: 'full'}
  
 ];
