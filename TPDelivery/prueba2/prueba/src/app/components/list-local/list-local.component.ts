@@ -3,6 +3,7 @@ import { LocalService } from '../../services/local.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { MessageService } from 'src/app/services/message-service.service';
 
 @Component({
   selector: 'app-list-local',
@@ -12,11 +13,13 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 export class ListLocalComponent implements OnInit {
 
   @Output() toggleChanged = new EventEmitter<boolean>();
+  @Output() onFilter = new EventEmitter();
+
   id: any;
   listLocal: Local[] = [];
   toggleProductos: boolean = false;
 
-  constructor(private localService: LocalService, private toastr: ToastrService, config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(private localService: LocalService, private toastr: ToastrService, config: NgbModalConfig, private modalService: NgbModal, private _messageService: MessageService) {
     config.backdrop = 'static';
     config.keyboard = false;
   }
@@ -58,6 +61,8 @@ export class ListLocalComponent implements OnInit {
       this.localService.selectedLocal = local;
       this.toggleProductos = true;
       this.toggleChanged.emit(this.toggleProductos);
+      //this.onFilter.emit('Register click');
+      this._messageService.filter('Register click');
     }
 
   }

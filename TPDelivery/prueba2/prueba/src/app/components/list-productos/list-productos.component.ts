@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LocalService } from 'src/app/services/local.service';
+import { MessageService } from 'src/app/services/message-service.service';
 
 @Component({
   selector: 'app-list-productos',
@@ -11,13 +12,19 @@ import { LocalService } from 'src/app/services/local.service';
 })
 export class ListProductosComponent implements OnInit {
 
-  idL: any = this.cargaId();
-  nomLoc: any = this.cargaNombre();
+  idL: any;
+  nomLoc: any;
 
-  constructor(public localService: LocalService, private toastr: ToastrService, private aRouter: ActivatedRoute) {
+  constructor(public localService: LocalService, private toastr: ToastrService, private aRouter: ActivatedRoute, private _messageService: MessageService) {
+    this._messageService.listen().subscribe((m: any) => {
+      console.log(m);
+      this.ngOnInit();
+    })
   }
 
   ngOnInit(): void {
+    this.cargaNombre();
+    this.cargaId();
     this.obtenerProductos()
   }
 
@@ -40,21 +47,17 @@ export class ListProductosComponent implements OnInit {
 
   cargaNombre() {
     if (this.localService.selectedLocal != undefined) {
-      return this.localService.selectedLocal.nombre;
+      this.nomLoc = this.localService.selectedLocal.nombre;
     }
-    return "No se encuentra un local seleccionado";
+    return console.log("No se encuentra un local seleccionado");
   }
 
   cargaId() {
     if (this.localService.selectedLocal != undefined) {
-      return this.localService.selectedLocal._id;
+      this.idL = this.localService.selectedLocal._id;
     }
-    return "";
+    return console.log("Local indefinido");
   };
-
-  ngOnChanges(){
-    this.obtenerProductos();
-  }
 
 }
 

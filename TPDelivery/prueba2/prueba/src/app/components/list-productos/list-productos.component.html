@@ -1,9 +1,8 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
-    <div class="col-lg-8 offset-lg-2">
+    <div class="col-xxl-12 offset-md-0">
       <div class="card">
         <div class="card-body text-center">
-          <button class="btn btn-secondary float-start" routerLink='/'>Volver</button>
           <span class="titulo">Listado de productos de {{ nomLoc }}</span>
           <button class="btn btn-success float-end" [routerLink]="['/crear-producto',idL]">Nuevo</button>
           <table *ngIf="localService.productos.length > 0" class="table table-striped">
