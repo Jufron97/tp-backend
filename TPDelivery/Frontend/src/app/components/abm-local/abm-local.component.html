@@ -1,0 +1,52 @@
+<div style="height:100vh; margin-top:6%; width:100%">
+    <div class="container-fluid h-100 ms-0 w-100">
+        <div class="row h-100 w-100">
+            <div class="col-md-6">
+
+                <app-list-local (openLocalModal)="openLocalModal($event)" (toggleChanged)="toggleChanged($event)">
+                </app-list-local>
+
+            </div>
+            <div class="col-md-6">
+                <app-list-productos *ngIf="toggleProductos" (openProductoModal)="openProductoModal($event)">
+                </app-list-productos>
+            </div>
+
+            <!--Modal local-->
+
+            <button id="openLocalModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#LocalModal">Open
+                Modal</button>
+                
+                <div class="modal fade" id="LocalModal" tabindex="-1" aria-labelledby="localModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <app-crear-local></app-crear-local>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal producto-->
+
+            <button id="openProductModalButton" [hidden]="true" data-bs-toggle="modal"
+                data-bs-target="#ProductoModal">Open
+                Modal</button>
+
+            <div class="modal fade" id="ProductoModal" tabindex="-1" aria-labelledby="productoModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <app-crear-producto></app-crear-producto>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
