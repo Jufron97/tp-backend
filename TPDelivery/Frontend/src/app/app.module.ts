@@ -20,6 +20,7 @@ import { LocalesComponent } from './components/locales/locales.component';
 import { MapComponent } from './components/map/map.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { AbmLocalComponent } from './components/abm-local/abm-local.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import { AbmLocalComponent } from './components/abm-local/abm-local.component';
     MapComponent,
     ProductosComponent,
     AbmLocalComponent,
+    FooterComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ export class ListProductosComponent implements OnInit {
 
   idL: any;
   nomLoc: any;
+
   @Output() openProductoModal = new EventEmitter<string>();
 
   constructor(public localService: LocalService, private toastr: ToastrService, private aRouter: ActivatedRoute, private _messageService: MessageService) {
@@ -29,7 +30,7 @@ export class ListProductosComponent implements OnInit {
     this.obtenerProductos()
   }
 
-  public obtenerProductos() {
+  obtenerProductos() {
     this.localService.getProductos(this.idL).subscribe(data => {
       this.localService.productos = data;
     }, error => {

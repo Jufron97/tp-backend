@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListProductosComponent } from '../list-productos/list-productos.component';
 
+
 @Component({
   selector: 'app-abm-local',
   templateUrl: './abm-local.component.html',
@@ -9,6 +10,7 @@ import { ListProductosComponent } from '../list-productos/list-productos.compone
 export class AbmLocalComponent implements OnInit {
 
   toggleProductos: boolean = false;
+
 
   constructor() { }
 
@@ -35,6 +37,7 @@ export class AbmLocalComponent implements OnInit {
     localModalButton.click();
 
   }
+
 
 
 }

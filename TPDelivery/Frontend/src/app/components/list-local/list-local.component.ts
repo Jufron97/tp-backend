@@ -31,7 +31,8 @@ export class ListLocalComponent implements OnInit {
   }
 
   obtenerLocales() {
-    this.localService.getLocales().subscribe(data => {
+
+    this.localService.getLocales().subscribe( data => {
       console.log(data);
       this.listLocal = data;
     }, error => {
@@ -44,8 +45,9 @@ export class ListLocalComponent implements OnInit {
     this.id = id;
   }
 
-  deleteLocal(id: any) {
-    this.localService.deleteLocal(id).subscribe(data => {
+  
+  deleteLocal( id:any ) {
+    this.localService.deleteLocal(id).subscribe( data => {
       this.toastr.error('El Local fue eliminado con exito', 'Local eliminado');
       this.obtenerLocales();
     }, error => {
@@ -53,7 +55,8 @@ export class ListLocalComponent implements OnInit {
     })
   }
 
-  cargaProductos(local: Local) {
+
+  cargaProductos(local:Local) {
 
     if (this.localService.selectedLocal?._id === local._id) {
       this.toggleProductos = !this.toggleProductos;
@@ -74,7 +77,5 @@ export class ListLocalComponent implements OnInit {
   this.openLocalModal.emit("Abrir modal");
 
   }
-
-
 
 }
