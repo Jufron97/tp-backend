@@ -1,8 +1,9 @@
 import { Local } from './../../models/local';
 import { LocalService } from '../../services/local.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { MessageService } from 'src/app/services/message-service.service';
 
 @Component({
   selector: 'app-list-local',
@@ -11,9 +12,16 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ListLocalComponent implements OnInit {
 
+  @Output() toggleChanged = new EventEmitter<boolean>();
+  @Output() onFilter = new EventEmitter();
+  @Output() openLocalModal = new EventEmitter<string>();
+
+
   id: any;
   listLocal: Local[] = [];
-  constructor( private localService:LocalService, private toastr : ToastrService, config: NgbModalConfig, private modalService: NgbModal) { 
+  toggleProductos: boolean = false;
+
+  constructor(private localService: LocalService, private toastr: ToastrService, config: NgbModalConfig, private modalService: NgbModal, private _messageService: MessageService) {
     config.backdrop = 'static';
     config.keyboard = false;
   }
@@ -23,6 +31,7 @@ export class ListLocalComponent implements OnInit {
   }
 
   obtenerLocales() {
+
     this.localService.getLocales().subscribe( data => {
       console.log(data);
       this.listLocal = data;
@@ -36,6 +45,7 @@ export class ListLocalComponent implements OnInit {
     this.id = id;
   }
 
+  
   deleteLocal( id:any ) {
     this.localService.deleteLocal(id).subscribe( data => {
       this.toastr.error('El Local fue eliminado con exito', 'Local eliminado');
@@ -45,11 +55,27 @@ export class ListLocalComponent implements OnInit {
     })
   }
 
-  cargaProductos(local:Local){
 
-    this.localService.selectedLocal=local;
+  cargaProductos(local:Local) {
+
+    if (this.localService.selectedLocal?._id === local._id) {
+      this.toggleProductos = !this.toggleProductos;
+      this.toggleChanged.emit(this.toggleProductos);
+    }
+    else {
+      this.localService.selectedLocal = local;
+      this.toggleProductos = true;
+      this.toggleChanged.emit(this.toggleProductos);
+      //this.onFilter.emit('Register click');
+      this._messageService.filter('Register click');
+    }
 
   }
 
+  openModal() {
+
+  this.openLocalModal.emit("Abrir modal");
+
+  }
 
 }
