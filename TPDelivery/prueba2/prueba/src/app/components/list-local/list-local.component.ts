@@ -14,6 +14,8 @@ export class ListLocalComponent implements OnInit {
 
   @Output() toggleChanged = new EventEmitter<boolean>();
   @Output() onFilter = new EventEmitter();
+  @Output() openLocalModal = new EventEmitter<string>();
+
 
   id: any;
   listLocal: Local[] = [];
@@ -66,6 +68,13 @@ export class ListLocalComponent implements OnInit {
     }
 
   }
+
+  openModal() {
+
+  this.openLocalModal.emit("Abrir modal");
+
+  }
+
 
 
 }

@@ -3,17 +3,50 @@
         <div class="row h-100 w-100">
             <div class="col-md-6">
 
-                <app-list-local (toggleChanged)="toggleChanged($event)"></app-list-local>
+                <app-list-local (openLocalModal)="openLocalModal($event)" (toggleChanged)="toggleChanged($event)">
+                </app-list-local>
 
             </div>
             <div class="col-md-6">
-                <app-list-productos *ngIf="toggleProductos"></app-list-productos>
+                <app-list-productos *ngIf="toggleProductos" (openProductoModal)="openProductoModal($event)">
+                </app-list-productos>
             </div>
 
-            <app-crear-local></app-crear-local>
+
+            <!--Modal local-->
+
+            <button id="openLocalModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#LocalModal">Open
+                Modal</button>
+
+            <div class="modal fade" id="LocalModal" tabindex="-1" aria-labelledby="localModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <app-crear-local></app-crear-local>
+
+                    </div>
+                </div>
+            </div>
 
 
-            <app-crear-producto></app-crear-producto>
+
+
+            <!--Modal producto-->
+            <button id="openProductModalButton" [hidden]="true" data-bs-toggle="modal"
+                data-bs-target="#ProductoModal">Open
+                Modal</button>
+
+            <div class="modal fade" id="ProductoModal" tabindex="-1" aria-labelledby="productoModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <app-crear-producto></app-crear-producto>
+
+                    </div>
+                </div>
+            </div>
+
 
 
 

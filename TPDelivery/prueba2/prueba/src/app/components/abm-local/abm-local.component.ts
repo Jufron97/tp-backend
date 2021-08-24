@@ -19,6 +19,22 @@ export class AbmLocalComponent implements OnInit {
     this.toggleProductos = event;
   }
 
-  
+  openProductoModal(event: any) {
+
+    let productoModalButton: HTMLElement = document.getElementById("openProductModalButton") as HTMLElement;
+
+    productoModalButton.click();
+
+  }
+
+
+  openLocalModal(event:any) {
+
+    let localModalButton: HTMLElement = document.getElementById("openLocalModalButton") as HTMLElement;
+
+    localModalButton.click();
+
+  }
+
 
 }

@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">Listado de productos de {{ nomLoc }}</span>
-          <button class="btn btn-success float-end" [routerLink]="['/crear-producto',idL]">Nuevo</button>
+          <button class="btn btn-success float-end" (click)="openModal()">Nuevo</button>
           <table *ngIf="localService.productos.length > 0" class="table table-striped">
             <thead>
               <tr>

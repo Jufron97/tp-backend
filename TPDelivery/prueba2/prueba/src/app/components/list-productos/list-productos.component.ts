@@ -1,5 +1,5 @@
 import { Local, Producto } from './../../models/local';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LocalService } from 'src/app/services/local.service';
@@ -14,6 +14,7 @@ export class ListProductosComponent implements OnInit {
 
   idL: any;
   nomLoc: any;
+  @Output() openProductoModal = new EventEmitter<string>();
 
   constructor(public localService: LocalService, private toastr: ToastrService, private aRouter: ActivatedRoute, private _messageService: MessageService) {
     this._messageService.listen().subscribe((m: any) => {
@@ -58,6 +59,13 @@ export class ListProductosComponent implements OnInit {
     }
     return console.log("Local indefinido");
   };
+
+
+  openModal() {
+
+    this.openProductoModal.emit("Abrir modal");
+
+  }
 
 }
 
