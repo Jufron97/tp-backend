@@ -14,6 +14,7 @@ var ProductoSchema = new mongoose.Schema({
 var LocalSchema = new mongoose.Schema({
   nombre:       { type: String, unique: true },
   productos:    { type: [ProductoSchema]},
+  descripcion:{ type: String },
   tags:         { type: [String]},
  //   order:          { type: [{
  //     orderId:  { type: String },
