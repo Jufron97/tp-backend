@@ -13,6 +13,7 @@ export class LocalService {
   locales: Local[] = [];
   selectedLocal: Local | undefined;
   productos: Producto[] = [];
+  selectedProducto: Producto | undefined;
 
   constructor(private http: HttpClient) { }
 

@@ -2,13 +2,10 @@
     <div class="container-fluid h-100 ms-0 w-100">
         <div class="row h-100 w-100">
             <div class="align-items-center">
-
                 <app-list-local (openLocalModal)="openLocalModal($event)" (toggleChanged)="toggleChanged($event)">
                 </app-list-local>
-                
-
             </div>
-            <div class=" align-items-center">
+            <div class="align-items-center">
                 <app-list-productos *ngIf="toggleProductos" (openProductoModal)="openProductoModal($event)">
                 </app-list-productos>
 

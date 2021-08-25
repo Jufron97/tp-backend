@@ -36,6 +36,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ProductosComponent,
     AbmLocalComponent,
     FooterComponent,
+
   ],
   imports: [
     BrowserModule,
