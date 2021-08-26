@@ -2,10 +2,12 @@ export class Local {
 
     _id?: string;
     nombre: string;
+    descripcion: string;
     productos: Producto[];
 
-    constructor(nom: string) {
+    constructor(nom: string,desc:string) {
         this.nombre = nom;
+        this.descripcion=desc;
         this.productos = [];
     }
 

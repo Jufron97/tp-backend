@@ -1,5 +1,5 @@
 <div class="mt-5 pt-5">
-    <div class="container-fluid  ">
+<div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
                 <app-list-local (openLocalModal)="openLocalModal($event)" (toggleChanged)="toggleChanged($event)">
@@ -7,8 +7,9 @@
             </div>
             <div class="col-md-6">
                 <app-list-productos *ngIf="toggleProductos" (openProductoModal)="openProductoModal($event)">
-                </app-list-productos>
+                </app-list-productos>                  
             </div>
+            <app-crear-local></app-crear-local>
 
             <!--Modal local-->
             <button id="openLocalModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#LocalModal">Open
