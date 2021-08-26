@@ -1,17 +1,15 @@
 <div class="mt-5 pt-5">
     <div class="container-fluid h-100 ms-0 w-100">
         <div class="row h-100 w-100">
-            <div class="align-items-center">
+            <div class="col-md-6">
                 <app-list-local (openLocalModal)="openLocalModal($event)" (toggleChanged)="toggleChanged($event)">
                 </app-list-local>
             </div>
-            <div class="align-items-center">
+            <div class="col-md-6">
                 <app-list-productos *ngIf="toggleProductos" (openProductoModal)="openProductoModal($event)">
-                </app-list-productos>
-
-                <app-crear-local></app-crear-local>
-               
+                </app-list-productos>                  
             </div>
+            <app-crear-local></app-crear-local>
 
             <!--Modal local-->
 
