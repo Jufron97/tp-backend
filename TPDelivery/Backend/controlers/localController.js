@@ -49,6 +49,23 @@ exports.nameLocal = async (req, res) => {
 };
 
 exports.updateLocal = async (req, res) => {
+    try {
+        const { nombre, descripcion, costoEnvio, tiempoEnvio, tags } = req.body;
+        let local = await Local.findById(req.bode._id);
+        if (!local) {
+            res.status(404).json({ msg: 'No existe el local' });
+        }
+        local.nombre = nombre
+        local.descripcion = descripcion
+        local.costoEnvio = costoEnvio
+        local.tiempoEnvio = tiempoEnvio
+        local.tags = tags
+        await Local.findOneAndUpdate({ _id: local.id }, local, { new: true })
+            .then(res.status(200).json("Local Editado"))
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error');
+    }
 
 };
 
@@ -99,13 +116,12 @@ exports.addProducto = async (req, res) => {
         if (!local) {
             res.status(404).json({ msg: 'No existe el local' });
         }
-        const { nombre, descripcion, categoria, subcategoria, stock, precio } = req.body;
+        const { nombre, descripcion, categoria, subcategoria, precio } = req.body;
         let producto = {}
         producto.nombre = nombre;
         producto.descripcion = descripcion;
         producto.categoria = categoria;
         producto.subcategoria = subcategoria;
-        producto.stock = stock;
         producto.precio = precio;
         local.productos.push(producto);
         local = await Local.findByIdAndUpdate({ _id: req.params.id }, local);
@@ -189,7 +205,7 @@ exports.editProducto = async (req, res) => {
 
     try {
 
-        const { nombre, descripcion, categoria, subcategoria, stock, precio } = req.body;
+        const { nombre, descripcion, categoria, subcategoria, precio } = req.body;
         let local = await Local.findById(req.params.idLoc);
         if (!local) {
             res.status(404).json({ msg: 'No existe el local' });
@@ -204,7 +220,6 @@ exports.editProducto = async (req, res) => {
         producto.descripcion = descripcion;
         producto.categoria = categoria;
         producto.subcategoria = subcategoria;
-        producto.stock = stock;
         producto.precio = precio;
 
         await Local.findOneAndUpdate({ _id: req.params.idLoc }, local, { new: true })
