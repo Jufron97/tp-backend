@@ -1,6 +1,6 @@
 <div class="mt-5 pt-5">
-    <div class="container-fluid h-100 ms-0 w-100">
-        <div class="row h-100 w-100">
+<div class="container-fluid">
+        <div class="row">
             <div class="col-md-6">
                 <app-list-local (openLocalModal)="openLocalModal($event)" (toggleChanged)="toggleChanged($event)">
                 </app-list-local>
@@ -12,12 +12,11 @@
             <app-crear-local></app-crear-local>
 
             <!--Modal local-->
-
             <button id="openLocalModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#LocalModal">Open
-                Modal</button>
-                
-                <div class="modal fade" id="LocalModal" tabindex="-1" aria-labelledby="localModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
+                Modal
+            </button>
+            <div class="modal fade" id="LocalModal" tabindex="-1" aria-labelledby="localModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
 
                         <app-crear-local></app-crear-local>

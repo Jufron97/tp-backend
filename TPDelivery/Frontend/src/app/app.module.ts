@@ -21,6 +21,7 @@ import { MapComponent } from './components/map/map.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { AbmLocalComponent } from './components/abm-local/abm-local.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ProductosComponent,
     AbmLocalComponent,
     FooterComponent,
+    SearchbarComponent,
 
   ],
   imports: [
