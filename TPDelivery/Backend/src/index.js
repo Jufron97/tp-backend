@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost/locales',{
   .catch(err => console.log(err));
 
 // importing routes
-const indexRoutes = require('../routes/local');
+const indexRoutes = require('../routes/local','../routes/usuario');
 
 // settings
 app.set('port', process.env.PORT || 4000);

@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const localController = require('../controlers/usuarioController');
+const usuarioController = require('../controlers/usuarioController');
 
 
 router.post('/registro-usuario', usuarioController.addUsuario);
@@ -11,7 +11,7 @@ router.delete('/:id/delete-usuario', verifyToken, usuarioController.deleteUsuari
 router.put('/:id/update-usuario', verifyToken, usuarioController.updateUsuario);
 
 
-export function verifyToken(req, res, next) {
+function verifyToken (req, res, next)  {
     if (!req.headers.authorization) {
         return res.status(401).send("Request no autorizada")
     };
@@ -26,3 +26,6 @@ export function verifyToken(req, res, next) {
     next();
 
 }
+
+module.exports = router;
+exports.verifyToken;

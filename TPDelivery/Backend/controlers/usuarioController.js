@@ -103,19 +103,19 @@ exports.deleteUsuario = async (req, res) => {
 exports.updateUsuario = async (req, res) => {
     try {
         const { usuario, contraseña, nombreApellido, direccion, telefono, email } = req.body;
-        let usuario = await Usuario.findById(req.body._id);
-        if (!usuario) {
+        let usu = await Usuario.findById(req.body._id);
+        if (!usu) {
             res.status(404).json({ msg: 'No existe el usuario' });
         }
 
-        usuario.usuario = usuario;
-        usuario.contraseña = contraseña;
-        usuario.nombreApellido = nombreApellido;
-        usuario.direccion = direccion;
-        usuario.telefono = telefono;
-        usuario.email = email;
+        usu.usuario = usuario;
+        usu.contraseña = contraseña;
+        usu.nombreApellido = nombreApellido;
+        usu.direccion = direccion;
+        usu.telefono = telefono;
+        usu.email = email;
 
-        await Usuario.findOneAndUpdate({ _id: usuario.id }, local, { new: true })
+        await Usuario.findOneAndUpdate({ _id: usu._id }, usu, { new: true })
             .then(res.status(200).json("Usuario Editado"))
     } catch (error) {
         console.log(error);
