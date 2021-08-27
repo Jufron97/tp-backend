@@ -2,10 +2,12 @@ var mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 var UsuarioSchema = new mongoose.Schema({
-    nombreApellido: { type: String},
-    direccion: {type: String},
-    telefono: {type: String},
-    email: {type: String}
+    usuario: { type: String },
+    contraseña: { type: String },
+    nombreApellido: { type: String },
+    direccion: { type: String },
+    telefono: { type: String },
+    email: { type: String }
 });
 
 var Usuario = mongoose.model('usuario', UsuarioSchema);

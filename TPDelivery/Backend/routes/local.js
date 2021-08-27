@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const localController = require('../controlers/localController');
+const { verifyToken } = require('./usuario');
 
 router.get('/', localController.listLocal);
 router.get('/:id/get-name', localController.nameLocal);

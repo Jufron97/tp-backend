@@ -30,7 +30,7 @@ export class AbmLocalComponent implements OnInit {
   }
 
 
-  openLocalModal(event:any) {
+  openLocalModal(event: any) {
 
     let localModalButton: HTMLElement = document.getElementById("openLocalModalButton") as HTMLElement;
 

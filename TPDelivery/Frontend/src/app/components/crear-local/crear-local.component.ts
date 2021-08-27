@@ -24,10 +24,10 @@ export class CrearLocalComponent implements OnInit {
   }
 
   addLocal(){
-    let newLocal: Local = new Local(
-      this.localForm.get('nombre')?.value,
-      this.localForm.get('descripcion')?.value,
-    )
+    //let newLocal: Local = new Local(
+      //this.localForm.get('nombre')?.value,
+      //this.localForm.get('descripcion')?.value,
+    //)
   }
 
 }
