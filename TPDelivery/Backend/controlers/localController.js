@@ -51,7 +51,7 @@ exports.nameLocal = async (req, res) => {
 exports.updateLocal = async (req, res) => {
     try {
         const { nombre, descripcion, costoEnvio, tiempoEnvio, tags } = req.body;
-        let local = await Local.findById(req.bode._id);
+        let local = await Local.findById(req.body._id);
         if (!local) {
             res.status(404).json({ msg: 'No existe el local' });
         }
