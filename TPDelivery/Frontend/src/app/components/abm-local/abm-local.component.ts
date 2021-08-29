@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ListProductosComponent } from '../list-productos/list-productos.component';
 
 
@@ -10,6 +10,7 @@ import { ListProductosComponent } from '../list-productos/list-productos.compone
 export class AbmLocalComponent implements OnInit {
 
   toggleProductos: boolean = false;
+  selectedLocal: any;
 
 
   constructor() { }
@@ -24,6 +25,7 @@ export class AbmLocalComponent implements OnInit {
   openProductoModal(event: any) {
 
     let productoModalButton: HTMLElement = document.getElementById("openProductModalButton") as HTMLElement;
+    this.selectedLocal=event;
 
     productoModalButton.click();
 

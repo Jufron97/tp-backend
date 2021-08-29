@@ -22,6 +22,10 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { AbmLocalComponent } from './components/abm-local/abm-local.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { AbmUsuarioComponent } from './components/abm-usuario/abm-usuario.component';
+import { ListUsuarioComponent } from './components/list-usuario/list-usuario.component';
+import { ListPedidoComponent } from './components/list-pedido/list-pedido.component';
+import { CrearUsuarioComponent } from './components/crear-usuario/crear-usuario.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,10 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
     AbmLocalComponent,
     FooterComponent,
     SearchbarComponent,
+    AbmUsuarioComponent,
+    ListUsuarioComponent,
+    ListPedidoComponent,
+    CrearUsuarioComponent,
 
   ],
   imports: [
