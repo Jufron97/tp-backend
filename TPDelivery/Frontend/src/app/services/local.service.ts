@@ -62,8 +62,8 @@ export class LocalService {
     return this.http.get(this.url + idL + '/get-product/' + idP);
   }
 
-  editarProductos(idL: string, idP: string, producto: Producto): Observable<any> {
-    return this.http.put(this.url + idL + '/edit-product/' + idP, producto);
+  editarProductos(idL: string, nom: string, producto: Producto): Observable<any> {
+    return this.http.put(this.url + idL + '/edit-product/' + nom, producto);
   }
 
   getLocalesByName(name: string) {

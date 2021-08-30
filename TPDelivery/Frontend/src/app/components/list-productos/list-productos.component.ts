@@ -23,6 +23,7 @@ export class ListProductosComponent implements OnInit {
   };
 
   @Output() openProductoModal = new EventEmitter<Local>();
+  @Output() onFilter = new EventEmitter();
 
   constructor(public localService: LocalService, private toastr: ToastrService, private aRouter: ActivatedRoute, private _messageService: MessageService) {
     this._messageService.listen().subscribe((m: any) => {
@@ -71,8 +72,17 @@ export class ListProductosComponent implements OnInit {
 
   openModal(producto: Producto) {
 
+    if(producto!==this.productoVacio){
+      //this.onFilter.emit('Edit');
+      this._messageService.filter(producto.nombre);
+      this.localService.selectedProducto=producto;
+      this.openProductoModal.emit(this.localService.selectedLocal);
+    }
+    else{
+    this._messageService.filter("");
     this.localService.selectedProducto=producto;
     this.openProductoModal.emit(this.localService.selectedLocal);
+    }
 
   }
 
