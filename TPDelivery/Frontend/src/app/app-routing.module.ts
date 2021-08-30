@@ -9,19 +9,22 @@ import { LocalesComponent } from './components/locales/locales.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { AbmLocalComponent } from './components/abm-local/abm-local.component';
 import { ListPedidoComponent } from './components/list-pedido/list-pedido.component';
+import { ListUsuarioComponent } from './components/list-usuario/list-usuario.component';
+import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
-  { path:'', component:LandingComponent},
-  { path: 'crear-local', component: CrearLocalComponent},
-  { path: 'listar-producto/:idL', component: ListProductosComponent},
-  { path: 'crear-producto/:idL', component: CrearProductoComponent},
-  { path: 'editar-producto/:idL/:idP', component: CrearProductoComponent},
-  { path:'locales', component:LocalesComponent},
-  { path:'productos', component:ProductosComponent},
-  { path: 'abm-local', component: AbmLocalComponent},
-  { path: 'list-pedido', component: ListPedidoComponent},
-  { path: '**', redirectTo: '', pathMatch: 'full'}
- 
+  { path: '', component: LandingComponent },
+  { path: 'crear-local', component: CrearLocalComponent },
+  { path: 'listar-producto/:idL', component: ListProductosComponent },
+  { path: 'crear-producto/:idL', component: CrearProductoComponent },
+  { path: 'editar-producto/:idL/:idP', component: CrearProductoComponent },
+  { path: 'locales', component: LocalesComponent },
+  { path: 'productos', component: ProductosComponent },
+  { path: 'abm-local', component: AbmLocalComponent, canActivate: [AuthGuard] },
+  { path: 'list-pedido', component: ListPedidoComponent, canActivate: [AuthGuard] },
+  { path: 'list-usuario', component: ListUsuarioComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
+
 ];
 
 @NgModule({

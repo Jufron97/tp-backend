@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { textChangeRangeIsUnchanged } from 'typescript';
 
 @Component({
   selector: 'app-navbar',
@@ -13,10 +16,24 @@ export class NavbarComponent implements OnInit {
   usuarioForm: FormGroup;
   signInForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private toastr: ToastrService, public usuarioService: UsuarioService) {
+  usu: Usuario = {
+    usuario: '',
+    contrasena: '',
+    nombreApellido: '',
+    direccion: '',
+    telefono: '',
+    email: ''
+  };
+
+  usuarioVacio: Usuario = {
+    usuario: '',
+    direccion: ''
+  }
+
+  constructor(private router: Router, private fb: FormBuilder, private toastr: ToastrService, public usuarioService: UsuarioService) {
     this.usuarioForm = this.fb.group({
       usuario: ['', Validators.required],
-      contraseña: ['', Validators.required],
+      contrasena: ['', Validators.required],
       nombreApe: ['', Validators.required],
       telefono: ['', Validators.required],
       email: ['', Validators.required],
@@ -24,22 +41,67 @@ export class NavbarComponent implements OnInit {
     })
     this.signInForm = this.fb.group({
       usuario: ['', Validators.required],
-      contraseña: ['', Validators.required]
+      contrasena: ['', Validators.required]
     })
   }
 
   ngOnInit(): void {
-  }
-
-
-  signUp(){
 
   }
 
-  signIn(){
+
+  signUp() {
+    this.usuarioService.signUp(this.usu).subscribe(
+      res => {
+        this.toastr.success('Usuario registrado', 'Su usuario ha sido registrado con éxito, puede proceder a iniciar sesión');
+        localStorage.setItem('token', res.token);
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('Error', 'Error al registrar el usuario');
+        this.usuarioForm.reset();
+      }
+    )
+    let cerrarButton: HTMLElement = document.getElementById("cerrarButton2") as HTMLElement;
+    cerrarButton.click();
+  }
+
+  signIn() {
+    this.usuarioService.signIn(this.usu).subscribe(
+      res => {
+        this.toastr.success('Sesión iniciada', 'Se ha iniciado sesión con éxito');
+        localStorage.setItem('token', res.token);
+         localStorage.setItem('usuario', JSON.stringify(this.usu));
+         this.usuarioService.selectedUsuario=this.usu;
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('Error', 'Usuario inexistente');
+        this.signInForm.reset();
+      }
+    )
+    let cerrarButton: HTMLElement = document.getElementById("cerrarButton1") as HTMLElement;
+    cerrarButton.click();
+  }
+
+
+  signOut() {
+
+    this.usuarioService.selectedUsuario = this.usuarioVacio;
+    this.usu = this.usuarioVacio;
+    this.signInForm.reset();
+    this.usuarioForm.reset();
+    this.usuarioService.logOut();
+
+  }
+
+  limpiar(){
+
+    this.usu = this.usuarioVacio;
+    this.usuarioForm.reset();
+    this.signInForm.reset();
     
   }
-
 
 
 }

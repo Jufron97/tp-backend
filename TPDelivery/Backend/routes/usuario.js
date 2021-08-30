@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const usuarioController = require('../controlers/usuarioController');
+const { jwt } = require('jsonwebtoken');
 
 
 router.post('/registro-usuario', usuarioController.addUsuario);
