@@ -13,8 +13,8 @@ router.get('/:name/find-locales-name', localController.findLocalesByName);
 router.get('/:id/list-product', localController.listProducto);
 router.post('/:id/add-product', localController.addProducto);
 router.get('/:idLoc/get-product/:idPro', localController.obtenerProducto);
-router.put('/:idLoc/edit-product/:idPro', localController.editProducto);
-router.delete('/:idLoc/delete-product/:idPro', localController.deleteProducto);
+router.put('/:idLoc/edit-product/:nomProd', localController.editProducto);
+router.delete('/:idLoc/delete-product/:nomProd', localController.deleteProducto);
 router.get('/:id/find-productos-name/:name', localController.findProductosByName);
 
 

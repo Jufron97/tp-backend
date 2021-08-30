@@ -14,8 +14,16 @@ export class ListProductosComponent implements OnInit {
 
   idL: any;
   nomLoc: any;
+  productoVacio: Producto = {
+    nombre: '',
+    descripcion: '',
+    categoria: '',
+    precio: 0,
+    subcategoria: ''
+  };
 
-  @Output() openProductoModal = new EventEmitter<string>();
+  @Output() openProductoModal = new EventEmitter<Local>();
+  @Output() onFilter = new EventEmitter();
 
   constructor(public localService: LocalService, private toastr: ToastrService, private aRouter: ActivatedRoute, private _messageService: MessageService) {
     this._messageService.listen().subscribe((m: any) => {
@@ -38,8 +46,8 @@ export class ListProductosComponent implements OnInit {
     })
   }
 
-  eliminarProducto(idL: any, idP: any) {
-    this.localService.deleteProductos(idL, idP).subscribe(data => {
+  eliminarProducto(idL: any, nomProd: any) {
+    this.localService.deleteProductos(idL, nomProd).subscribe(data => {
       this.toastr.error('El producto fue eliminado con exito', 'Producto eliminado');
       this.obtenerProductos();
     }, error => {
@@ -62,9 +70,19 @@ export class ListProductosComponent implements OnInit {
   };
 
 
-  openModal() {
+  openModal(producto: Producto) {
 
-    this.openProductoModal.emit("Abrir modal");
+    if(producto!==this.productoVacio){
+      //this.onFilter.emit('Edit');
+      this._messageService.filter(producto.nombre);
+      this.localService.selectedProducto=producto;
+      this.openProductoModal.emit(this.localService.selectedLocal);
+    }
+    else{
+    this._messageService.filter("");
+    this.localService.selectedProducto=producto;
+    this.openProductoModal.emit(this.localService.selectedLocal);
+    }
 
   }
 

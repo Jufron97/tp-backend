@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">Listado de productos de {{ nomLoc }}</span>
-          <button class="btn btn-success float-end" (click)="openModal()">Nuevo</button>
+          <button class="btn btn-success float-end" (click)="openModal(productoVacio)">Nuevo</button>
           <table *ngIf="localService.productos.length > 0" class="table table-striped">
             <thead>
               <tr>
@@ -24,8 +24,8 @@
                 <td>{{ producto.subcategoria }}</td>
                 <td>{{ producto.precio }}$</td>
                 <td width='70px'>
-                  <i [routerLink]="['/editar-producto',idL,producto._id]" class="fas fa-edit text-primary"></i>
-                  <i (click)="eliminarProducto(idL,producto._id)" class="fas fa-trash text-danger"></i>
+                  <i (click)="openModal(producto)" class="fas fa-edit text-primary"></i>
+                  <i (click)="eliminarProducto(idL,producto.nombre)" class="fas fa-trash text-danger"></i>
                 </td>
               </tr>
             </tbody>

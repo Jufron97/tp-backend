@@ -144,7 +144,7 @@ exports.deleteProducto = async (req, res) => {
             res.status(404).json({ msg: 'No existe el local' });
         };
         var producto = local.productos.find(obj => {
-            return obj._id == req.params.idPro
+            return obj.nombre == req.params.nomProd
         })
         if (!producto) {
             res.status(404).json({ msg: 'No existe el producto' });
@@ -211,7 +211,7 @@ exports.editProducto = async (req, res) => {
             res.status(404).json({ msg: 'No existe el local' });
         };
         var producto = local.productos.find(obj => {
-            return obj._id == req.params.idPro
+            return obj.nombre == req.params.nomProd
         })
         if (!producto) {
             res.status(404).json({ msg: 'No existe el producto' });

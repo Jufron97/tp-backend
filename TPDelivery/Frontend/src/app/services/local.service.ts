@@ -11,9 +11,26 @@ export class LocalService {
   url = 'http://localhost:4000/';
 
   locales: Local[] = [];
-  selectedLocal: Local | undefined;
+  
+  selectedLocal: Local = {
+    _id: '',
+    nombre: '',
+    descripcion: '',
+    costoEnvio: 0,
+    tiempoEnvio: '',
+    direccion: '',
+    tags: [],
+    productos: [],
+  };
+
   productos: Producto[] = [];
-  selectedProducto: Producto | undefined;
+  selectedProducto: Producto = {
+    nombre: '',
+    descripcion: '',
+    categoria: '',
+    precio: 0,
+    subcategoria: ''
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -37,16 +54,16 @@ export class LocalService {
     return this.http.post(this.url + id + '/add-product', prod);
   }
 
-  deleteProductos(idL: string, idP: string): Observable<any> {
-    return this.http.delete(this.url + idL + '/delete-product/' + idP);
+  deleteProductos(idL: string, nomProd: string): Observable<any> {
+    return this.http.delete(this.url + idL + '/delete-product/' + nomProd);
   }
 
   obtenerProductos(idL: any, idP: any): Observable<any> {
     return this.http.get(this.url + idL + '/get-product/' + idP);
   }
 
-  editarProductos(idL: string, idP: string, producto: Producto): Observable<any> {
-    return this.http.put(this.url + idL + '/edit-product/' + idP, producto);
+  editarProductos(idL: string, nom: string, producto: Producto): Observable<any> {
+    return this.http.put(this.url + idL + '/edit-product/' + nom, producto);
   }
 
   getLocalesByName(name: string) {

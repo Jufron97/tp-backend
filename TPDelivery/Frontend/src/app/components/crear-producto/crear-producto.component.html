@@ -5,14 +5,14 @@
 <div class="modal-body">
     <form class="mt-3" [formGroup]="productoForm" (ngSubmit)="addProduct()">
         <div class="form-group mb-3">
-            <input formControlName="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre">
+            <input formControlName="nombre" [(ngModel)]="localService.selectedProducto.nombre" class="form-control" type="text" name="nombre" placeholder="Nombre">
             <div class="text-danger"
                 *ngIf="productoForm.get('nombre')?.hasError('required') && productoForm.get('nombre')?.touched">
                 <span>Ingrese el nombre del producto</span>
             </div>
         </div>
         <div class="form-group mb-3">
-            <textarea formControlName="descripcion" class="form-control" name="descripcion" cols="80"
+            <textarea formControlName="descripcion" [(ngModel)]="localService.selectedProducto.descripcion" class="form-control" name="descripcion" cols="80"
                 placeholder="Escribe la descripcion"></textarea>
             <div class="text-danger"
                 *ngIf="productoForm.get('descripcion')?.hasError('required') && productoForm.get('descripcion')?.touched">
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <input formControlName="categoria" class="form-control" type="text" name="categoria"
+            <input formControlName="categoria" [(ngModel)]="localService.selectedProducto.categoria" class="form-control" type="text" name="categoria"
                 placeholder="Categoria">
             <div class="text-danger"
                 *ngIf="productoForm.get('categoria')?.hasError('required') && productoForm.get('categoria')?.touched">
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <input formControlName="subcategoria" class="form-control" type="text" name="subcategoria"
+            <input formControlName="subcategoria" [(ngModel)]="localService.selectedProducto.subcategoria" class="form-control" type="text" name="subcategoria"
                 placeholder="Subcategoria">
             <div class="text-danger"
                 *ngIf="productoForm.get('subcategoria')?.hasError('required') && productoForm.get('subcategoria')?.touched">
@@ -36,14 +36,7 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <input formControlName="stock" class="form-control" type="number" name="stock" placeholder="Stock">
-            <div class="text-danger"
-                *ngIf="productoForm.get('stock')?.hasError('required') && productoForm.get('stock')?.touched">
-                <span>Ingrese el stock del producto</span>
-            </div>
-        </div>
-        <div class="form-group mb-3">
-            <input formControlName="precio" class="form-control" type="number" name="precio" placeholder="Precio">
+            <input formControlName="precio" [(ngModel)]="localService.selectedProducto.precio" class="form-control" type="number" name="precio" placeholder="Precio">
             <div class="text-danger"
                 *ngIf="productoForm.get('precio')?.hasError('required') && productoForm.get('precio')?.touched">
                 <span>Ingrese el precio del producto</span>
@@ -53,6 +46,6 @@
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-    <button type="submit" [disabled]="productoForm.invalid" class="btn btn-success btn-lg float-end">Aceptar</button>
+    <button type="button" id="cerrarButton" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <button type="submit" [disabled]="productoForm.invalid" (click)="addProduct()" class="btn btn-success btn-lg float-end">Aceptar</button>
 </div>

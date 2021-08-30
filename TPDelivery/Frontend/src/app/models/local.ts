@@ -19,15 +19,10 @@ export class Local {
         this.tags = [];
 
     }
-
-    devNombre() {
-        return this.nombre
-    }
 }
 
 export class Producto {
 
-    _id?: string;
     nombre: string;
     descripcion: string;
     categoria: string;
