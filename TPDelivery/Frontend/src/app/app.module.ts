@@ -6,8 +6,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CrearLocalComponent } from './components/crear-local/crear-local.component';
@@ -22,10 +20,8 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { AbmLocalComponent } from './components/abm-local/abm-local.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { AbmUsuarioComponent } from './components/abm-usuario/abm-usuario.component';
 import { ListUsuarioComponent } from './components/list-usuario/list-usuario.component';
 import { ListPedidoComponent } from './components/list-pedido/list-pedido.component';
-import { CrearUsuarioComponent } from './components/crear-usuario/crear-usuario.component';
 
 @NgModule({
   declarations: [
@@ -42,10 +38,8 @@ import { CrearUsuarioComponent } from './components/crear-usuario/crear-usuario.
     AbmLocalComponent,
     FooterComponent,
     SearchbarComponent,
-    AbmUsuarioComponent,
     ListUsuarioComponent,
     ListPedidoComponent,
-    CrearUsuarioComponent,
 
   ],
   imports: [

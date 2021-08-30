@@ -6,7 +6,7 @@ const usuarioController = require('../controlers/usuarioController');
 router.post('/registro-usuario', usuarioController.addUsuario);
 router.post('/iniciar-sesion', usuarioController.signIn);
 router.get('/list-usuario', verifyToken, usuarioController.listUsuario);
-router.get('/:id/get-usuario', usuarioController.getUsuario);
+router.get('/:usu/get-usuario', usuarioController.getUsuario);
 router.delete('/:id/delete-usuario', verifyToken, usuarioController.deleteUsuario);
 router.put('/:id/update-usuario', verifyToken, usuarioController.updateUsuario);
 

@@ -64,7 +64,7 @@ exports.getUsuario = async (req, res) => {
 
     try {
 
-        let usuario = await Usuario.findById(req.params.id);
+        let usuario = await Usuario.findOne({ nombre: req.params.usu});
         if (!usuario) {
             res.status(404).json({ msg: 'No existe el usuario' });
         }

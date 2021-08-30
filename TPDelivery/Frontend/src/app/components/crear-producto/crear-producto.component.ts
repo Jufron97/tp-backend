@@ -29,12 +29,11 @@ export class CrearProductoComponent implements OnInit {
       precio: ['', Validators.required]
     })
     this._messageService.listen().subscribe((m: any) => {
-      if (m!=="") {
+      if (m !== "") {
         this.esEdit = true;
         this.nomProd = m;
       }
-      else 
-      {
+      else {
         this.esEdit = false
       }
 
@@ -74,9 +73,8 @@ export class CrearProductoComponent implements OnInit {
     }
 
     let cerrarButton: HTMLElement = document.getElementById("cerrarButton") as HTMLElement;
-
     cerrarButton.click();
-
+    
   }
 
 
