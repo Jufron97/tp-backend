@@ -34,6 +34,7 @@ export class LocalService {
 
   constructor(private http: HttpClient) { }
 
+  ////// Local //////
   getLocales() {
     return this.http.get<Local[]>(this.url);
   }
@@ -45,7 +46,16 @@ export class LocalService {
   deleteLocal(id: string): Observable<any> {
     return this.http.delete(this.url + id);
   }
+  
+  addLocal(loc:Local): Observable<any>   {
+    return this.http.post(this.url + 'add-local', loc)
+  }
 
+  editLocal(id: string,loc:Local): Observable<any>  {
+    return this.http.put(this.url +id+ '/edit-local', loc)
+  }
+
+  ////// Productos //////
   getProductos(id: string): Observable<any> {
     return this.http.get(this.url + id + '/list-product');
   }

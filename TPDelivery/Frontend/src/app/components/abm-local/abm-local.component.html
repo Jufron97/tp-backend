@@ -9,7 +9,6 @@
                 <app-list-productos *ngIf="toggleProductos" (openProductoModal)="openProductoModal($event)">
                 </app-list-productos>                  
             </div>
-
             <!--Modal local-->
             <button id="openLocalModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#LocalModal">Open
                 Modal
@@ -23,13 +22,10 @@
                     </div>
                 </div>
             </div>
-
+            <!--Modal local-->
             <!--Modal producto-->
-
             <button id="openProductModalButton" [hidden]="true" data-bs-toggle="modal"
-                data-bs-target="#ProductoModal">Open
-                Modal</button>
-
+                data-bs-target="#ProductoModal">Open Modal</button>
             <div class="modal fade" id="ProductoModal" tabindex="-1" aria-labelledby="productoModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -40,8 +36,7 @@
                     </div>
                 </div>
             </div>
-
-
+            <!--Modal producto-->
         </div>
     </div>
 </div>

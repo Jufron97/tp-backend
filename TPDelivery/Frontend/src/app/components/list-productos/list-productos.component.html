@@ -1,9 +1,9 @@
 <div class="container mt-3">
-  <div class="row">
-    <div class="col-xxl-12 offset-md-0">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-xl-12 ms-md-4">
       <div class="card">
         <div class="card-body text-center">
-          <span class="titulo">Listado de productos de {{ nomLoc }}</span>
+          <span class="titulo">Listado de productos de {{ nomLoc }} </span>
           <button class="btn btn-success float-end" (click)="openModal(productoVacio)">Nuevo</button>
           <table *ngIf="localService.productos.length > 0" class="table table-striped">
             <thead>
@@ -11,9 +11,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Categoria</th>
-                <th scope="col">Subcategoria</th>
                 <th scope="col">Precio</th>
-                <th scope="col"></th>
               </tr>
             </thead>
             <tbody *ngFor="let producto of localService.productos">
@@ -21,9 +19,8 @@
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.descripcion }}</td>
                 <td>{{ producto.categoria }}</td>
-                <td>{{ producto.subcategoria }}</td>
                 <td>{{ producto.precio }}$</td>
-                <td width='70px'>
+                <td>
                   <i (click)="openModal(producto)" class="fas fa-edit text-primary"></i>
                   <i (click)="eliminarProducto(idL,producto.nombre)" class="fas fa-trash text-danger"></i>
                 </td>

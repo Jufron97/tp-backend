@@ -5,7 +5,7 @@ const { verifyToken } = require('./usuario');
 
 router.get('/', localController.listLocal);
 router.get('/:id/get-name', localController.nameLocal);
-router.post('/', localController.addLocal);
+router.post('/add-local', localController.addLocal);
 router.get('/:id', localController.selectLocal);
 router.delete('/:id', localController.deleteLocal);
 router.get('/:name/find-locales-name', localController.findLocalesByName);

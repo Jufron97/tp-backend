@@ -1,6 +1,6 @@
 <div class="container mt-3">
     <div class="row justify-content-center align-items-center">
-        <div class="col-xxl-12 ms-md-4">
+        <div class="col-xl-12 ms-md-4">
             <div class="card">
                 <div class="card-body text-center">
                     <span class="titulo">Listado de Locales</span>
@@ -9,6 +9,7 @@
                         <thead>
                           <tr>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Direccion</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                           </tr>
@@ -16,12 +17,13 @@
                         <tbody *ngFor="let local of listLocal">
                           <tr>
                             <td>{{ local.nombre }}</td>
-                            <td width='70px'>
-                              <i class="fas fa-edit text-primary"></i>
-                              <i class="fas fa-trash text-danger" (click)="open(content,local._id)"></i>
-                            </td>
-                            <td width='70px'>
+                            <td>{{ local.direccion }}</td>
+                            <td >
                               <button (click)="cargaProductos(local)" class="btn btn-secondary">Productos</button>
+                            </td>
+                            <td >
+                              <i class="fas fa-edit text-primary" (click)="open(content,local._id)"></i>
+                              <i class="fas fa-trash text-danger" (click)="open(content,local._id)"></i>
                             </td>
                           </tr>
                         </tbody>

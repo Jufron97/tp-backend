@@ -3,11 +3,11 @@ export class Local {
     _id?: string;
     nombre: string;
     descripcion: string;
-    costoEnvio: number;
-    tiempoEnvio: string;
-    direccion: string;
-    tags: string[];
-    productos: Producto[];
+    costoEnvio?: number;
+    tiempoEnvio?: string;
+    direccion?: string;
+    tags?: string[];
+    productos?: Producto[];
 
     constructor(nom: string, desc: string, costo: number, tiempo: string, dire: string) {
         this.nombre = nom;
@@ -17,7 +17,6 @@ export class Local {
         this.tiempoEnvio=tiempo;
         this.direccion=dire;
         this.tags = [];
-
     }
 }
 

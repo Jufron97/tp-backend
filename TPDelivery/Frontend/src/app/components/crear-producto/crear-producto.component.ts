@@ -45,7 +45,6 @@ export class CrearProductoComponent implements OnInit {
   }
 
   addProduct() {
-
     let newProd: Producto = {
       nombre: this.productoForm.get('nombre')?.value,
       descripcion: this.productoForm.get('descripcion')?.value,
@@ -53,7 +52,6 @@ export class CrearProductoComponent implements OnInit {
       subcategoria: this.productoForm.get('subcategoria')?.value,
       precio: this.productoForm.get('precio')?.value,
     }
-
     if (this.esEdit) {
       this.localService.editarProductos(this.selectedLocal._id, this.nomProd, newProd).subscribe(data => {
         this.toastr.info('Producto Actualizado', 'El producto fue actualizado con exito');
@@ -70,14 +68,8 @@ export class CrearProductoComponent implements OnInit {
         console.log(error);
         this.productoForm.reset();
       })
-
     }
-
     let cerrarButton: HTMLElement = document.getElementById("cerrarButton") as HTMLElement;
-
     cerrarButton.click();
-
   }
-
-
 }
