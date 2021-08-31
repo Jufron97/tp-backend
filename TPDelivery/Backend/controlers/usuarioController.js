@@ -24,11 +24,11 @@ exports.addUsuario = async (req, res) => {
 exports.signIn = async (req, res) => {
 
     try {
-        const { usuario, contraseña } = req.body;
-        const user = await Usuario.findOne({ usuario });
+        const { usuario, contrasena } = req.body;
+        const user = await Usuario.findOne({ usuario: usuario }, function (err, obj) { console.log(obj); return obj; });
 
         if (!user) return res.status(401).send("El usuario no existe");
-        if (user.contraseña !== contraseña) return res.status(401).send("Contraseña errónea");
+        if (user.contrasena !== contrasena) return res.status(401).send("Contraseña errónea");
 
         const token = jwt.sign({ _id: user._id }, 'secretKey');
         return res.status(200).json({ token });
@@ -64,7 +64,7 @@ exports.getUsuario = async (req, res) => {
 
     try {
 
-        let usuario = await Usuario.findById(req.params.id);
+        let usuario = await Usuario.findOne({ nombre: req.params.usu });
         if (!usuario) {
             res.status(404).json({ msg: 'No existe el usuario' });
         }
@@ -102,14 +102,14 @@ exports.deleteUsuario = async (req, res) => {
 
 exports.updateUsuario = async (req, res) => {
     try {
-        const { usuario, contraseña, nombreApellido, direccion, telefono, email } = req.body;
+        const { usuario, contrasena, nombreApellido, direccion, telefono, email } = req.body;
         let usu = await Usuario.findById(req.body._id);
         if (!usu) {
             res.status(404).json({ msg: 'No existe el usuario' });
         }
 
         usu.usuario = usuario;
-        usu.contraseña = contraseña;
+        usu.contrasena = contrasena;
         usu.nombreApellido = nombreApellido;
         usu.direccion = direccion;
         usu.telefono = telefono;

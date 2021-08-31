@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ListProductosComponent } from '../list-productos/list-productos.component';
 
 
@@ -13,7 +14,8 @@ export class AbmLocalComponent implements OnInit {
   selectedLocal: any;
 
 
-  constructor() { }
+  constructor() {
+}
 
   ngOnInit(): void {
   }

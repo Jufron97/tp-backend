@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-var bodyParser = require('body-parser');
 const cors = require('cors');
 
 // creamos server
@@ -15,7 +14,9 @@ mongoose.connect('mongodb://localhost/locales',{
   .catch(err => console.log(err));
 
 // importing routes
-const indexRoutes = require('../routes/local','../routes/usuario');
+const indexRoutes = require('../routes/local');
+const userRoutes = require('../routes/usuario');
+const pedidoRoutes = require('../routes/pedido');
 
 // settings
 app.set('port', process.env.PORT || 4000);
@@ -23,11 +24,12 @@ app.set('port', process.env.PORT || 4000);
 // middlewares
 app.use(cors());
 app.use(express.urlencoded({extended: false}))
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 
 // routes
 app.use('/', indexRoutes);
+app.use('/user',userRoutes);
 
 // starting the server
 app.listen(app.get('port'), () => {

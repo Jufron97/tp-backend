@@ -1,1 +1,37 @@
-<p>list-usuario works!</p>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-xxl-12 offset-md-0">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo">Listado de usuarios</span>
+                    <table *ngIf="usuarioService.usuarios.length > 0" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Nombre y Apellido</th>
+                                <th scope="col">Direccion</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Email</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let usuario of usuarioService.usuarios">
+                            <tr>
+                                <td>{{ usuario.usuario }}</td>
+                                <td>{{ usuario.nombreApellido }}</td>
+                                <td>{{ usuario.direccion }}</td>
+                                <td>{{ usuario.telefono }}</td>
+                                <td>{{ usuario.email }}$</td>
+                                <td width='70px'>
+                                    <i (click)="deleteUsuario(usuario)"
+                                        class="fas fa-trash text-danger"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5 *ngIf="usuarioService.usuarios.length == 0">No hay usuarios para mostrar</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
