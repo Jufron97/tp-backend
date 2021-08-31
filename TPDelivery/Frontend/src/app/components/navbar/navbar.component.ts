@@ -71,15 +71,16 @@ export class NavbarComponent implements OnInit {
       res => {
         this.toastr.success('Sesión iniciada', 'Se ha iniciado sesión con éxito');
         localStorage.setItem('token', res.token);
-         localStorage.setItem('usuario', JSON.stringify(this.usu));
-         this.usuarioService.selectedUsuario=this.usu;
+        this.getUsuario(res.token);
       },
       err => {
         console.log(err);
         this.toastr.error('Error', 'Usuario inexistente');
+        this.limpiar();
         this.signInForm.reset();
       }
     )
+    localStorage.setItem('usuario', JSON.stringify(this.usu));
     let cerrarButton: HTMLElement = document.getElementById("cerrarButton1") as HTMLElement;
     cerrarButton.click();
   }
@@ -95,12 +96,26 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  limpiar(){
+  limpiar() {
 
     this.usu = this.usuarioVacio;
     this.usuarioForm.reset();
     this.signInForm.reset();
-    
+
+  }
+
+
+  getUsuario(id: string) {
+    console.log(id);
+    this.usuarioService.getUsuario(id).subscribe(
+      data => {
+        this.usu = data;
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('Error', 'Usuario inexistente');
+      }
+    )
   }
 
 

@@ -1,6 +1,6 @@
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-xxl-12 offset-md-0">
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-xl-12 offset-md-0">
             <div class="card">
                 <div class="card-body text-center">
                     <span class="titulo">Listado de usuarios</span>
@@ -23,8 +23,7 @@
                                 <td>{{ usuario.telefono }}</td>
                                 <td>{{ usuario.email }}$</td>
                                 <td width='70px'>
-                                    <i (click)="deleteUsuario(usuario)"
-                                        class="fas fa-trash text-danger"></i>
+                                    <i (click)="deleteUsuario(usuario)" class="fas fa-trash text-danger"></i>
                                 </td>
                             </tr>
                         </tbody>

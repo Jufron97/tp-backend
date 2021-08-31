@@ -75,11 +75,9 @@
                         <div *ngFor="let producto of localService.productos" class="col">
                             <div class="card h-100">
                                 <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
+                                <div class="card-body small">
                                     <h5 class="card-title">{{producto.nombre}}</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural
-                                        lead-in
-                                        to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text">{{producto.descripcion}}</p>
                                 </div>
                             </div>
                         </div>
