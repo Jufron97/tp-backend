@@ -89,7 +89,6 @@ export class CrearLocalComponent implements OnInit {
 
   limpiar() {
 
-    this.photoSelected = null;
     this.localForm.reset();
 
   }

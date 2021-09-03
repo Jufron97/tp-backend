@@ -89,7 +89,6 @@ export class CrearProductoComponent implements OnInit {
 
   limpiar() {
 
-    this.photoSelected = null;
     this.productoForm.reset();
 
   }
