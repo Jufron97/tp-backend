@@ -8,6 +8,8 @@ export class Local {
     direccion?: string;
     tags?: string[];
     productos?: Producto[];
+    image?: File;
+    imagePath?: string;
 
     constructor(nom: string, desc: string, costo: number, tiempo: string, dire: string) {
         this.nombre = nom;
@@ -27,6 +29,8 @@ export class Producto {
     categoria: string;
     subcategoria: string;
     precio: number;
+    image?: File;
+    imagePath?: string;
 
     constructor(nom: string, des: string, cat: string, sub: string, pre: number) {
         this.nombre = nom;

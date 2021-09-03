@@ -12,8 +12,13 @@ export class UsuarioService {
 
   usuarios: Usuario[] = [];
   selectedUsuario: Usuario = {
+    _id: '',
     usuario: '',
-    direccion: ''
+    contrasena: '',
+    nombreApellido: '',
+    telefono: '',
+    direccion: '',
+    email: '',
   };
 
   constructor(private http: HttpClient, private router: Router) {
@@ -32,11 +37,11 @@ export class UsuarioService {
   }
 
   getUsuario(id: string) {
-    return this.http.get<Usuario>(this.url + 'user/' + id + '/get-usuario')
+    return this.http.get(this.url + 'user/' + id + '/get-usuario')
   }
 
   deleteUsuario(id: string) {
-    return this.http.delete<any>(this.url + 'user/' + id + '/delete-usuario')
+    return this.http.delete<Usuario>(this.url + 'user/' + id + '/delete-usuario')
   }
 
   updateUsuario(id: string, usu: Usuario) {

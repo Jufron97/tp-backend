@@ -80,7 +80,7 @@ export class NavbarComponent implements OnInit {
         this.signInForm.reset();
       }
     )
-    localStorage.setItem('usuario', JSON.stringify(this.usu));
+
     let cerrarButton: HTMLElement = document.getElementById("cerrarButton1") as HTMLElement;
     cerrarButton.click();
   }
@@ -96,20 +96,23 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  limpiar() {
+    limpiar() {
 
-    this.usu = this.usuarioVacio;
-    this.usuarioForm.reset();
-    this.signInForm.reset();
+      this.usu = this.usuarioVacio;
+      this.usuarioForm.reset();
+      this.signInForm.reset();
 
-  }
+    }
 
 
   getUsuario(id: string) {
     console.log(id);
     this.usuarioService.getUsuario(id).subscribe(
       data => {
-        this.usu = data;
+        console.log(data);
+        this.usuarioService.selectedUsuario = <Usuario>data;
+        console.log(this.usuarioService.selectedUsuario);
+        localStorage.setItem('usuario', JSON.stringify(this.usuarioService.selectedUsuario));
       },
       err => {
         console.log(err);

@@ -19,6 +19,10 @@ export class CrearLocalComponent implements OnInit {
   localForm: FormGroup;
   esEdit: boolean = false;
 
+  imagen: any;
+
+  photoSelected: any;
+
   constructor(private fb: FormBuilder, private router: Router, private toastr: ToastrService, public localService: LocalService, private aRouter: ActivatedRoute, private _messageService: MessageService) {
     this.localForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -28,10 +32,10 @@ export class CrearLocalComponent implements OnInit {
       tiempoEnvio: ['', Validators.required],
     })
     this._messageService.listen().subscribe((m: any) => {
-      if (m!=="") {
-        this.esEdit = true;
+      if (m !== "") {
+        this.esEdit = false;
       }
-      else{
+      else {
         this.esEdit = false
       }
     })
@@ -39,39 +43,57 @@ export class CrearLocalComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  addLocal() { 
-    let newLocal: Local = {
-        nombre: this.localForm.get('nombre')?.value,
-        direccion : this.localForm.get('direccion')?.value,
-        descripcion : this.localForm.get('descripcion')?.value,
-        costoEnvio : this.localForm.get('costoEnvio')?.value,
-        tiempoEnvio : this.localForm.get('tiempoEnvio')?.value,
-    }
-    console.log(newLocal)
-    if(this.esEdit){
-      this.localService.editLocal(this.selectedLocal._id,newLocal).subscribe(data => {
+
+  addLocal() {
+    const fd = new FormData();
+    fd.append('nombre',this.localForm.get('nombre')?.value);
+    fd.append('direccion',this.localForm.get('direccion')?.value);
+    fd.append('descripcion',this.localForm.get('descripcion')?.value);
+    fd.append('costoEnvio',this.localForm.get('costoEnvio')?.value);
+    fd.append('tiempoEnvio',this.localForm.get('tiempoEnvio')?.value);
+    fd.append('image',this.imagen);
+
+    if (this.esEdit) {
+      this.localService.editLocal(this.selectedLocal._id, fd).subscribe(data => {
         this.toastr.info('Local Actualizado', 'El local fue actualizado con exito');
       }
         , error => {
           console.log(error);
           this.localForm.reset();
         })
-    } 
-    else{
-    this.localService.addLocal(newLocal).subscribe(data => {
-      this.toastr.success('Local Registrado', 'El local fue registrado con exito');
     }
-      , error => {
-        this.toastr.error(error)
-        this.localForm.reset();
-      })
+    else {
+      this.localService.addLocal(fd).subscribe(data => {
+        this.toastr.success('Local Registrado', 'El local fue registrado con exito');
+      }
+        , error => {
+          this.toastr.error(error)
+          this.localForm.reset();
+        })
 
     }
     let cerrarButton: HTMLElement = document.getElementById("cerrarButton") as HTMLElement;
     cerrarButton.click();
   }
-}
 
+
+  getImage(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      this.imagen = <File>event.target.files[0];
+      //Preview imagen
+      const reader = new FileReader();
+      reader.onload = e => this.photoSelected = reader.result;
+      reader.readAsDataURL(this.imagen);
+    }
+  }
+
+  limpiar() {
+
+    this.photoSelected = null;
+    this.localForm.reset();
+
+  }
+
+}
 
 
