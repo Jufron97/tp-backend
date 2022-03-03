@@ -11,12 +11,30 @@ export class LocalService {
   url = 'http://localhost:4000/';
 
   locales: Local[] = [];
-  selectedLocal: Local | undefined;
+  
+  selectedLocal: Local = {
+    _id: '',
+    nombre: '',
+    descripcion: '',
+    costoEnvio: 0,
+    tiempoEnvio: '',
+    direccion: '',
+    tags: [],
+    productos: [],
+  };
+
   productos: Producto[] = [];
-  selectedProducto: Producto | undefined;
+  selectedProducto: Producto = {
+    nombre: '',
+    descripcion: '',
+    categoria: '',
+    precio: 0,
+    subcategoria: ''
+  };
 
   constructor(private http: HttpClient) { }
 
+  ////// Local //////
   getLocales() {
     return this.http.get<Local[]>(this.url);
   }
@@ -28,25 +46,35 @@ export class LocalService {
   deleteLocal(id: string): Observable<any> {
     return this.http.delete(this.url + id);
   }
+  
+  addLocal(loc:FormData) {
+    console.log(loc);
+    return this.http.post<Local>(this.url + 'add-local', loc)
+  }
 
+  editLocal(id: string,loc:FormData): Observable<any>  {
+    return this.http.put(this.url +id+ '/edit-local', loc)
+  }
+
+  ////// Productos //////
   getProductos(id: string): Observable<any> {
     return this.http.get(this.url + id + '/list-product');
   }
 
-  guardarProductos(id: string, prod: Producto): Observable<any> {
+  guardarProductos(id: string, prod: FormData): Observable<any> {
     return this.http.post(this.url + id + '/add-product', prod);
   }
 
-  deleteProductos(idL: string, idP: string): Observable<any> {
-    return this.http.delete(this.url + idL + '/delete-product/' + idP);
+  deleteProductos(idL: string, nomProd: string): Observable<any> {
+    return this.http.delete(this.url + idL + '/delete-product/' + nomProd);
   }
 
   obtenerProductos(idL: any, idP: any): Observable<any> {
     return this.http.get(this.url + idL + '/get-product/' + idP);
   }
 
-  editarProductos(idL: string, idP: string, producto: Producto): Observable<any> {
-    return this.http.put(this.url + idL + '/edit-product/' + idP, producto);
+  editarProductos(idL: string, nom: string, producto: FormData): Observable<any> {
+    return this.http.put(this.url + idL + '/edit-product/' + nom, producto);
   }
 
   getLocalesByName(name: string) {

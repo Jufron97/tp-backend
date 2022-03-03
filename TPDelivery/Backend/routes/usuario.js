@@ -1,7 +1,9 @@
 const { Router } = require('express');
 const router = Router();
 const usuarioController = require('../controlers/usuarioController');
+const jwt = require('jsonwebtoken');
 
+//Rutas Usuario
 
 router.post('/registro-usuario', usuarioController.addUsuario);
 router.post('/iniciar-sesion', usuarioController.signIn);
@@ -10,6 +12,8 @@ router.get('/:id/get-usuario', usuarioController.getUsuario);
 router.delete('/:id/delete-usuario', verifyToken, usuarioController.deleteUsuario);
 router.put('/:id/update-usuario', verifyToken, usuarioController.updateUsuario);
 
+
+//Funcion para usar JSONWebTokens (usar en el router si se requiere logueo para realizar esa accion)
 
 function verifyToken (req, res, next)  {
     if (!req.headers.authorization) {
@@ -27,5 +31,4 @@ function verifyToken (req, res, next)  {
 
 }
 
-module.exports = router;
-exports.verifyToken;
+module.exports = router,verifyToken;

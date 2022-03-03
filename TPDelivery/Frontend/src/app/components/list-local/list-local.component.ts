@@ -43,13 +43,14 @@ export class ListLocalComponent implements OnInit {
   open(content: any, id: any) {
     this.modalService.open(content);
     this.id = id;
+    this.obtenerLocales();
   }
 
   
   deleteLocal( id:any ) {
     this.localService.deleteLocal(id).subscribe( data => {
-      this.toastr.error('El Local fue eliminado con exito', 'Local eliminado');
       this.obtenerLocales();
+      this.toastr.error('El Local fue eliminado con exito', 'Local eliminado');
     }, error => {
       console.log(error);
     })
@@ -75,6 +76,7 @@ export class ListLocalComponent implements OnInit {
   openModal() {
 
   this.openLocalModal.emit("Abrir modal");
+  this._messageService.filter('Nuevo');
 
   }
 

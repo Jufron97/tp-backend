@@ -1,31 +1,58 @@
 <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel">{{titulo}}</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <button type="button" (click)="limpiar()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="card-body">
-    <form class="mt-3" [formGroup]="localForm" (ngSubmit)="addLocal()">
+    <form class="mt-3" [formGroup]="localForm" enctype="multipart/formdata" (ngSubmit)="addLocal()">
         <div class="form-group mb-3">
             <input formControlName="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre">
             <div class="text-danger"
-            *ngIf="localForm.get('nombre')?.hasError('required') && localForm.get('nombre')?.touched">
-                <span>Ingrese el nombre del producto</span>
+                *ngIf="localForm.get('nombre')?.hasError('required') && localForm.get('nombre')?.touched">
+                <span>Campo requerido</span>
             </div>
         </div>
         <div class="form-group mb-3">
-            <input formControlName="descripcion" class="form-control" type="text" name="descripcion" placeholder="Descripcion">
+            <input formControlName="descripcion" class="form-control" type="text" name="descripcion"
+                placeholder="Descripcion">
             <div class="text-danger"
-            *ngIf="localForm.get('descripcion')?.hasError('required') && localForm.get('descripcion')?.touched">
-                <span>Ingrese la descripcion del local</span>
+                *ngIf="localForm.get('descripcion')?.hasError('required') && localForm.get('descripcion')?.touched">
+                <span>Campo requerido</span>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <input formControlName="costoEnvio" class="form-control w-25" type="number" name="costoEnvio"
+                placeholder="Costo de envio">
+            <div class="text-danger"
+                *ngIf="localForm.get('costoEnvio')?.hasError('required') && localForm.get('costoEnvio')?.touched">
+                <span>Campo requerido</span>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <input formControlName="tiempoEnvio" class="form-control" type="text" name="tiempoEnvio"
+                placeholder="Tiempo de envio">
+            <div class="text-danger"
+                *ngIf="localForm.get('tiempoEnvio')?.hasError('required') && localForm.get('tiempoEnvio')?.touched">
+                <span>Campo requerido</span>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <input formControlName="direccion" class="form-control" type="text" name="direccion"
+                placeholder="Direccion ">
+            <div class="text-danger"
+                *ngIf="localForm.get('direccion')?.hasError('required') && localForm.get('direccion')?.touched">
+                <span>Campo requerido</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <input name="image" (change)="getImage($event)" class="d-none" type="file" id="image1" #photoInput>
+                <img style="cursor: pointer;" [src]="photoSelected || 'assets/no-image.png'" class="img-fluid h-50 w-50"
+                    alt="No Image" (click)="photoInput.click()" />
             </div>
         </div>
     </form>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-    <button type="submit"  class="btn btn-success btn-lg float-end">Aceptar</button>
-</div>
-
-
-
-
-
+    <div class="modal-footer">
+        <button id="cerrarButton" type="button" class="btn btn-secondary" (click)="limpiar()" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" [disabled]="localForm.invalid" class="btn btn-success btn-lg float-end"
+            (click)="addLocal()">Aceptar</button>
+    </div>

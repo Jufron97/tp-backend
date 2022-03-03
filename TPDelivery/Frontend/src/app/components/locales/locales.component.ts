@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Local } from 'src/app/models/local';
 import { MessageService } from 'src/app/services/message-service.service';
 import { LocalService } from '../../services/local.service';
@@ -11,15 +11,15 @@ import { LocalService } from '../../services/local.service';
 })
 export class LocalesComponent implements OnInit {
 
-  constructor(public localService: LocalService,private router:Router, private _messageService: MessageService) {
+  constructor(public localService: LocalService,private router:Router,private route:ActivatedRoute ,private _messageService: MessageService) {
     this._messageService.listen().subscribe((m: string) => {
       if(m!==""){
-      console.log(m);
-      this.getLocalesName(m);
-    }
-    else{
+        console.log(m);
+        this.getLocalesName(m);
+      }
+      else{
       this.getLocales();
-    }
+      }
     })
    }
 
@@ -37,7 +37,7 @@ export class LocalesComponent implements OnInit {
 
   navigateProductos(local:Local){
     this.localService.selectedLocal=local;
-    this.router.navigate(['productos']);
+    this.router.navigate(['/productos']);
   }
 
   getLocalesName(m:string){
@@ -47,6 +47,4 @@ export class LocalesComponent implements OnInit {
       },
       err => console.log(err))
   }
-
-
 }
