@@ -1,0 +1,53 @@
+<div class="container mt-3">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-xl-12 ms-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo">Listado de Locales</span>
+                    <button class="btn btn-success float-end" (click)="openModal()">Nuevo</button>
+                    <table *ngIf="listLocal.length > 0" class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let local of listLocal">
+                          <tr>
+                            <td>{{ local.nombre }}</td>
+                            <td>{{ local.direccion }}</td>
+                            <td >
+                              <button (click)="cargaProductos(local)" class="btn btn-secondary">Productos</button>
+                            </td>
+                            <td >
+                              <i class="fas fa-edit text-primary" (click)="open(content,local._id)"></i>
+                              <i class="fas fa-trash text-danger" (click)="open(content,local._id)"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h5 *ngIf="listLocal.length == 0">No hay locales para mostrar</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">¿Seguro desea eliminar este local?</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>ACA IRIA ALGUNA MEDIDA DE SEGURIDAD (USUARIO/CONTRASEÑA)</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="d('Cross click')" (click)="deleteLocal(id)">Eliminar</button>
+  </div>
+</ng-template>
+
+

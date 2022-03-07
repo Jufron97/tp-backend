@@ -1,0 +1,35 @@
+<div class="container mt-3">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-xl-12 ms-md-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">Listado de productos de {{ nomLoc }} </span>
+          <button class="btn btn-success float-end" (click)="openModal(productoVacio)">Nuevo</button>
+          <table *ngIf="localService.productos.length > 0" class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Precio</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let producto of localService.productos">
+              <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.categoria }}</td>
+                <td>{{ producto.precio }}$</td>
+                <td>
+                  <i (click)="openModal(producto)" class="fas fa-edit text-primary"></i>
+                  <i (click)="eliminarProducto(idL,producto.nombre)" class="fas fa-trash text-danger"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 *ngIf="localService.productos.length == 0">No hay productos para mostrar</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
