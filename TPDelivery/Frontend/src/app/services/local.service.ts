@@ -47,11 +47,12 @@ export class LocalService {
     return this.http.delete(this.url + id);
   }
   
-  addLocal(loc:Local): Observable<any>   {
-    return this.http.post(this.url + 'add-local', loc)
+  addLocal(loc:FormData) {
+    console.log(loc);
+    return this.http.post<Local>(this.url + 'add-local', loc)
   }
 
-  editLocal(id: string,loc:Local): Observable<any>  {
+  editLocal(id: string,loc:FormData): Observable<any>  {
     return this.http.put(this.url +id+ '/edit-local', loc)
   }
 
@@ -60,7 +61,7 @@ export class LocalService {
     return this.http.get(this.url + id + '/list-product');
   }
 
-  guardarProductos(id: string, prod: Producto): Observable<any> {
+  guardarProductos(id: string, prod: FormData): Observable<any> {
     return this.http.post(this.url + id + '/add-product', prod);
   }
 
@@ -72,7 +73,7 @@ export class LocalService {
     return this.http.get(this.url + idL + '/get-product/' + idP);
   }
 
-  editarProductos(idL: string, nom: string, producto: Producto): Observable<any> {
+  editarProductos(idL: string, nom: string, producto: FormData): Observable<any> {
     return this.http.put(this.url + idL + '/edit-product/' + nom, producto);
   }
 

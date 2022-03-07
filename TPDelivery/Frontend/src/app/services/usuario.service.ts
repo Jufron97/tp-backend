@@ -12,8 +12,13 @@ export class UsuarioService {
 
   usuarios: Usuario[] = [];
   selectedUsuario: Usuario = {
+    _id: '',
     usuario: '',
-    direccion: ''
+    contrasena: '',
+    nombreApellido: '',
+    telefono: '',
+    direccion: '',
+    email: '',
   };
 
   constructor(private http: HttpClient, private router: Router) {
@@ -31,16 +36,16 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.url + 'user' + '/list-usuario')
   }
 
-  getUsuario(usuario: string) {
-    return this.http.get<Usuario>(this.url + 'user' + usuario + '/get-usuario')
+  getUsuario(id: string) {
+    return this.http.get(this.url + 'user/' + id + '/get-usuario')
   }
 
   deleteUsuario(id: string) {
-    return this.http.delete<any>(this.url + 'user' + id + '/delete-usuario')
+    return this.http.delete<Usuario>(this.url + 'user/' + id + '/delete-usuario')
   }
 
   updateUsuario(id: string, usu: Usuario) {
-    return this.http.put<any>(this.url + 'user' + id + '/update-usuario', usu)
+    return this.http.put<any>(this.url + 'user/' + id + '/update-usuario', usu)
   }
 
 
@@ -51,11 +56,27 @@ export class UsuarioService {
   }
 
   getToken() {
-    return localStorage.getItem('token');
+    if (localStorage.getItem('token')) {
+      return localStorage.getItem('token')
+    } return '';
   }
 
-  getUserName(){
+  getUser() {
     return JSON.parse(<string>localStorage.getItem('usuario'));
+  }
+
+  getUserName() {
+    let usu: Usuario = JSON.parse(<string>localStorage.getItem('usuario'));
+    if (usu) {
+      return usu.usuario;
+    } return '';
+  }
+
+  getDireccion() {
+    let usu: Usuario = JSON.parse(<string>localStorage.getItem('usuario'));
+    if (usu) {
+      return usu.direccion;
+    } return '';
   }
 
   logOut() {

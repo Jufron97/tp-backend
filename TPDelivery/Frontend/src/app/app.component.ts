@@ -8,7 +8,7 @@ import { addSyntheticLeadingComment } from 'typescript';
 })
 
 export class AppComponent {
-  
+
 onInit(){
   
   google.maps.event.addDomListener(window,"load",function(){

@@ -8,6 +8,7 @@ var ProductoSchema = new mongoose.Schema({
   subcategoria: { type: String },
   precio: { type: Number },
   fechaCreacion: { type: Date, default: Date.now },
+  imagePath: { type: String },
 });
 
 var LocalSchema = new mongoose.Schema({
@@ -18,6 +19,7 @@ var LocalSchema = new mongoose.Schema({
   productos: { type: [ProductoSchema] },
   direccion: { type: String },
   tags: { type: [String] },
+  imagePath: { type: String },
 });
 
 var Local = mongoose.model('Local', LocalSchema);

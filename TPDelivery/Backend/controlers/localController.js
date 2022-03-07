@@ -1,17 +1,22 @@
 const Local = require('../models/local');
+const { unlink } = require('fs-extra');
+const path = require('path');
+const multer = require('multer');
 
 exports.addLocal = async (req, res) => {
     try {
+        console.log(req.file);
+        let imageName = '/uploads/' + req.file.filename;
         let local = new Local(req.body);
+        local.imagePath = imageName;
         console.log(local);
-        await local.save();  
+        await local.save();
         res.send(local);
     } catch (error) {
         console.log(error);
         res.status(500).send('Hubo un error');
     }
 };
-
 exports.listLocal = async (req, res) => {
     try {
         let locales = await Local.find();
@@ -40,6 +45,8 @@ exports.updateLocal = async (req, res) => {
         if (!local) {
             res.status(404).json({ msg: 'No existe el local' });
         }
+        const imagePath = '/uploads/' + req.file.filename;
+        local.imagePath = imagePath
         local.nombre = nombre
         local.descripcion = descripcion
         local.costoEnvio = costoEnvio
@@ -63,6 +70,7 @@ exports.deleteLocal = async (req, res) => {
         let { id } = req.params;
         await Local.findOneAndRemove({ _id: id })
             .then(res.status(200).json("Eliminado"))
+        unlink(path.resolve('./public' + local.imagePath));
     } catch (error) {
         console.log(error);
         res.status(500).send('Hubo un error');
@@ -90,6 +98,8 @@ exports.addProducto = async (req, res) => {
         }
         const { nombre, descripcion, categoria, subcategoria, precio } = req.body;
         let producto = {}
+        const imagePath = '/uploads/' + req.file.filename;
+        producto.imagePath = imagePath;
         producto.nombre = nombre;
         producto.descripcion = descripcion;
         producto.categoria = categoria;
@@ -119,6 +129,7 @@ exports.deleteProducto = async (req, res) => {
         }
         var indice = local.productos.indexOf(producto);
         local.productos.splice(indice, 1);
+        unlink(path.resolve('./public' + producto.imagePath));
         await Local.findOneAndUpdate({ _id: req.params.idLoc }, local, { new: true })
             .then(res.status(200).json("Eliminado"))
     } catch (error) {
@@ -172,6 +183,8 @@ exports.editProducto = async (req, res) => {
         if (!producto) {
             res.status(404).json({ msg: 'No existe el producto' });
         }
+        const imagePath = '/uploads/' + req.file.filename;
+        producto.imagePath = imagePath;
         producto.nombre = nombre;
         producto.descripcion = descripcion;
         producto.categoria = categoria;

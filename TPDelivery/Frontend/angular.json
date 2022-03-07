@@ -96,7 +96,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "http://localhost:4000/public/uploads"
             ],
             "styles": [
               "src/styles.css"

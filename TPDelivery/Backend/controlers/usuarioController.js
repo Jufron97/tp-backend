@@ -63,8 +63,8 @@ exports.listUsuario = async (req, res) => {
 exports.getUsuario = async (req, res) => {
 
     try {
-
-        let usuario = await Usuario.findOne({ nombre: req.params.usu });
+        const payload = jwt.verify(req.params.id, 'secretKey');
+        let usuario = await Usuario.findById(payload._id);
         if (!usuario) {
             res.status(404).json({ msg: 'No existe el usuario' });
         }
