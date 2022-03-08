@@ -11,6 +11,7 @@ router.get('/list-usuario', verifyToken, usuarioController.listUsuario);
 router.get('/:id/get-usuario', usuarioController.getUsuario);
 router.delete('/:id/delete-usuario', verifyToken, usuarioController.deleteUsuario);
 router.put('/:id/update-usuario', verifyToken, usuarioController.updateUsuario);
+//router.get('/list-pedidos', verifyToken, usuarioController.listPedidos);
 
 
 //Funcion para usar JSONWebTokens (usar en el router si se requiere logueo para realizar esa accion)
