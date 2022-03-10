@@ -1,1 +1,32 @@
-<p>list-pedido works!</p>
+<div class="container-fluid mt-2 pt-2">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-xl-12 offset-md-0">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo">Pedidos</span>
+                    <table *ngIf="listPedidos.length > 0" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Fecha Pedido</th>
+                                <th scope="col">Fecha Hora Entrega</th>
+                                <th scope="col">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let pedido of listPedidos">
+                            <tr>
+                                <td>{{ pedido.nombreApellido }}</td>
+                                <!--
+                                    Aca van todos los pedidos del usuario
+                                <td>{{ local.nombre }}</td>
+                                <td>{{ local.direccion }}</td>
+                                -->
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5 *ngIf="listPedidos.length <= 0">No hay pedidos realizados</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

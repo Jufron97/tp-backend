@@ -24,6 +24,7 @@ import { ListUsuarioComponent } from './components/list-usuario/list-usuario.com
 import { ListPedidoComponent } from './components/list-pedido/list-pedido.component';
 import { AuthGuard } from "./auth.guard";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     SearchbarComponent,
     ListUsuarioComponent,
     ListPedidoComponent,
+    CarouselComponent,
 
   ],
   imports: [

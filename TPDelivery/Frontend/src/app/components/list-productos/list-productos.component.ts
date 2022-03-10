@@ -27,7 +27,6 @@ export class ListProductosComponent implements OnInit {
 
   constructor(public localService: LocalService, private toastr: ToastrService, private aRouter: ActivatedRoute, private _messageService: MessageService) {
     this._messageService.listen().subscribe((m: any) => {
-      console.log(m);
       this.ngOnInit();
     })
   }
@@ -59,19 +58,16 @@ export class ListProductosComponent implements OnInit {
     if (this.localService.selectedLocal != undefined) {
       this.nomLoc = this.localService.selectedLocal.nombre;
     }
-    return console.log("No se encuentra un local seleccionado");
   }
 
   cargaId() {
     if (this.localService.selectedLocal != undefined) {
       this.idL = this.localService.selectedLocal._id;
     }
-    return console.log("Local indefinido");
   };
 
 
   openModal(producto: Producto) {
-
     if(producto!==this.productoVacio){
       //this.onFilter.emit('Edit');
       this._messageService.filter(producto.nombre);

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Pedido } from 'src/app/models/pedido';
+import { Usuario } from 'src/app/models/usuario';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-list-pedido',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPedidoComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  listPedidos: Usuario[] = [];
+  
+  constructor(private usuarioService: UsuarioService){ 
   }
 
+  ngOnInit(): void {
+    this.usuarioService.getPedidos()
+  }
+
+  getPedidos(){
+    this.usuarioService.getPedidos().subscribe( data => {
+      //console.log(data);
+      this.listPedidos = data.pedidos;
+    }, error => {
+      console.log(error);
+    })
+    /*
+    this.pedidosService.getPedidos().subscribe( data => {
+      console.log(data);
+      this.listPedidos = data;
+    }, error => {
+      console.log(error);
+    })*/
+  }
+
+  cancelPedido(pedido: Pedido){
+
+  }
 }
