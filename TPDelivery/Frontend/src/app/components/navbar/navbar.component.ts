@@ -106,12 +106,12 @@ export class NavbarComponent implements OnInit {
 
 
   getUsuario(id: string) {
-    console.log(id);
+    //console.log(id);
     this.usuarioService.getUsuario(id).subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
         this.usuarioService.selectedUsuario = <Usuario>data;
-        console.log(this.usuarioService.selectedUsuario);
+        //console.log(this.usuarioService.selectedUsuario);
         localStorage.setItem('usuario', JSON.stringify(this.usuarioService.selectedUsuario));
       },
       err => {

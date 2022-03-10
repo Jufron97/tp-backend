@@ -1,5 +1,4 @@
-<div class="mt-5 pt-5">
-    <div class="container-fluid">
+<div class="container-fluid mt-2 pt-2">
         <div class="row">
             <div class="col-md-6">
                 <app-list-local (openLocalModal)="openLocalModal($event)" (toggleChanged)="toggleChanged($event)">
@@ -9,34 +8,34 @@
                 <app-list-productos *ngIf="toggleProductos" (openProductoModal)="openProductoModal($event)">
                 </app-list-productos>
             </div>
-            <!--Modal local-->
-            <button id="openLocalModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#LocalModal">Open
-                Modal
-            </button>
-            <div class="modal fade" id="LocalModal" tabindex="-1" aria-labelledby="localModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
+        </div>
+</div>
 
-                        <app-crear-local></app-crear-local>
 
-                    </div>
-                </div>
-            </div>
-            <!--Modal local-->
-            <!--Modal producto-->
-            <button id="openProductModalButton" [hidden]="true" data-bs-toggle="modal"
-                data-bs-target="#ProductoModal">Open Modal</button>
-            <div class="modal fade" id="ProductoModal" tabindex="-1" aria-labelledby="productoModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
+<!--Modal local-->
+<button id="openLocalModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#LocalModal">Open
+    Modal
+</button>
+<div class="modal fade" id="LocalModal" tabindex="-1" aria-labelledby="localModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
-                        <app-crear-producto [selectedLocal]="selectedLocal"></app-crear-producto>
+            <app-crear-local></app-crear-local>
 
-                    </div>
-                </div>
-            </div>
-            <!--Modal producto-->
         </div>
     </div>
 </div>
+<!--Modal local-->
+
+<!--Modal producto-->
+<button id="openProductModalButton" [hidden]="true" data-bs-toggle="modal"
+    data-bs-target="#ProductoModal">Open Modal</button>
+<div class="modal fade" id="ProductoModal" tabindex="-1" aria-labelledby="productoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <app-crear-producto [selectedLocal]="selectedLocal"></app-crear-producto>
+        </div>
+    </div>
+</div>
+<!--Modal producto-->

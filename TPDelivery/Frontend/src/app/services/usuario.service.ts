@@ -85,4 +85,10 @@ export class UsuarioService {
     this.router.navigate(['/']);
   }
 
+  getPedidos(){
+    console.log("Pedidos consultados");
+    //Aca hay que ir al arreglo del usuario y tomar los pedidos que esten en pendientes y que sean menores la fecha
+    return this.http.get<any>(this.url + 'user' + '/list-pedidos')
+  }
+
 }
