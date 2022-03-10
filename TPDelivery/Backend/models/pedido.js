@@ -4,7 +4,7 @@ var Usuario = require('./usuario');
 
 var PedidoSchema = new mongoose.Schema({
     fechaCreacion: { type: Date, default: Date.now },
-    usuario:   {type: Usuario},
+    usuario: {type: Usuario},
     local: {
         nombre: String,
         idLocal: String,

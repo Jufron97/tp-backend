@@ -31,7 +31,6 @@ export class ListLocalComponent implements OnInit {
   }
 
   obtenerLocales() {
-
     this.localService.getLocales().subscribe( data => {
       console.log(data);
       this.listLocal = data;
