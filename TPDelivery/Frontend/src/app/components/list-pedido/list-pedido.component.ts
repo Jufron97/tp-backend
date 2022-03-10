@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/models/pedido';
+import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ListPedidoComponent implements OnInit {
 
-  listPedidos: Pedido[] = [];
+  listPedidos: Usuario[] = [];
   
   constructor(private usuarioService: UsuarioService){ 
   }
@@ -19,7 +20,12 @@ export class ListPedidoComponent implements OnInit {
   }
 
   getPedidos(){
-    console.log(this.usuarioService.getPedidos())
+    this.usuarioService.getPedidos().subscribe( data => {
+      //console.log(data);
+      this.listPedidos = data.pedidos;
+    }, error => {
+      console.log(error);
+    })
     /*
     this.pedidosService.getPedidos().subscribe( data => {
       console.log(data);

@@ -88,8 +88,7 @@ export class UsuarioService {
   getPedidos(){
     console.log("Pedidos consultados");
     //Aca hay que ir al arreglo del usuario y tomar los pedidos que esten en pendientes y que sean menores la fecha
-    //console.log(this.http.get<any>(this.url + 'user' + '/list-usuario'))
-
+    return this.http.get<any>(this.url + 'user' + '/list-pedidos')
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="container mt-5 pt-5">
+<div class="container-fluid mt-2 pt-2">
     <div class="row justify-content-center align-items-center">
         <div class="col-xl-12 offset-md-0">
             <div class="card">
@@ -14,14 +14,13 @@
                         </thead>
                         <tbody *ngFor="let pedido of listPedidos">
                             <tr>
+                                <td>{{ pedido.nombreApellido }}</td>
                                 <!--
                                     Aca van todos los pedidos del usuario
                                 <td>{{ local.nombre }}</td>
                                 <td>{{ local.direccion }}</td>
                                 -->
-                                <td width='70px'>
-                                    <i (click)="cancelPedido(pedido)" class="fas fa-trash text-danger"></i>
-                                </td>
+                                
                             </tr>
                         </tbody>
                     </table>

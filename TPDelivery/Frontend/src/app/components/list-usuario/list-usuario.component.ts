@@ -27,6 +27,7 @@ export class ListUsuarioComponent implements OnInit {
       }
     )
   }
+  
 
 
   deleteUsuario(usu: Usuario) {
