@@ -16,7 +16,7 @@ var LocalSchema = new mongoose.Schema({
   descripcion: { type: String },
   costoEnvio: { type: Number },
   tiempoEnvio: { type: String },
-  productos: { type: [ProductoSchema] },
+  productos: { type: [] },
   direccion: { type: String },
   tags: { type: [String] },
   imagePath: { type: String },

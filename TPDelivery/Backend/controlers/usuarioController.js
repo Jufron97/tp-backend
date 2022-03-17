@@ -20,43 +20,29 @@ exports.addUsuario = async (req, res) => {
 
 };
 
-
 exports.signIn = async (req, res) => {
-
-    try {
-        const { usuario, contrasena } = req.body;
-        const user = await Usuario.findOne({ usuario: usuario }, function (err, obj) { console.log(obj); return obj; });
-
-        if (!user) return res.status(401).send("El usuario no existe");
-        if (user.contrasena !== contrasena) return res.status(401).send("Contraseña errónea");
-
-        const token = jwt.sign({ _id: user._id }, 'secretKey');
-        return res.status(200).json({ token });
-
-    }
-
-
-    catch (error) {
-        console.log(error);
-        return res.status(500).send('Hubo un error al autenticar al usuario');
-    }
-
+    await Usuario.findOne({
+        usuario: req.body.usuario,
+        contrasena: req.body.contrasena})
+        .then((user)=>{
+            const token = jwt.sign({ _id: user._id }, 'secretKey');
+            return res.status(200).json({ token });
+        })
+        .catch(error =>{
+            res.status(401).send("El usuario y/o contraseña ingresados no son correctos")
+        });
 }
 
 
 exports.listUsuario = async (req, res) => {
-
-    try {
-
-        let usuarios = await Usuario.find();
-        return res.send(usuarios);
-
-    } catch (error) {
-
+await Usuario.find({_id:0})
+    .then(usuarios =>{
+        res.send(usuarios)
+    })
+    .catch(err =>{
         console.log(error);
         res.status(500).send('Hubo un error al buscar el listado de usuarios');
-    }
-
+    })
 };
 
 
