@@ -1,40 +1,46 @@
 const Usuario = require('../models/usuario');
 const jwt = require('jsonwebtoken');
+const db = require('./DB');
 
 exports.addUsuario = async (req, res) => {
-
-    try {
-
-        let usuario = new Usuario(req.body);
-        await usuario.save();
-
-        const token = jwt.sign({ _id: usuario._id }, 'secretKey');
-
-        return res.status(200).json({ token });
-
-    } catch (error) {
-
-        console.log(error);
-        return res.status(500).send('Hubo un error al agregar el usuario');
-    }
-
+    db.connectDB();
+    await new Usuario(req.body).save()
+        .then((user)=>{
+            const token = jwt.sign({ _id: user._id }, 'secretKey');
+            return res.status(200).json({ token });           
+        })
+        .catch(error =>{
+            console.log(error)
+            res.status(500).send("Hubo un error al agregar el usuario")
+        })
+        .finally(()=>{
+            db.disconnectDB()
+        });
 };
 
 exports.signIn = async (req, res) => {
+    db.connectDB();
     await Usuario.findOne({
         usuario: req.body.usuario,
-        contrasena: req.body.contrasena})
+        contrasena: req.body.contrasena
+    })
         .then((user)=>{
             const token = jwt.sign({ _id: user._id }, 'secretKey');
-            return res.status(200).json({ token });
+            return res.status(200).json({ token });    
         })
         .catch(error =>{
+            console.log(error);
             res.status(401).send("El usuario y/o contraseña ingresados no son correctos")
+        })
+        .finally(() =>{
+            
         });
-}
+    db.disconnectDB();
+};
 
 
 exports.listUsuario = async (req, res) => {
+    //ESTO CON EL WEBTOKEN SE PUEDE VALIDAR PARA SABER SI ES EL ADMIN O NO
 await Usuario.find({_id:0})
     .then(usuarios =>{
         res.send(usuarios)

@@ -7,14 +7,6 @@ const path = require('path');
 // creamos server
 const app = express();
 
-// conectamos db
-mongoose.connect('mongodb://localhost/locales', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(db => console.log('db connected'))
-  .catch(err => console.log(err));
-
 // importing routes
 const indexRoutes = require('../routes/local');
 const userRoutes = require('../routes/usuario');

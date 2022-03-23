@@ -1,19 +1,26 @@
 const mongoose = require('mongoose');
 
-export default class DB{
+exports.connectDB = async() => {
+    mongoose.connect('mongodb://localhost/PedidosYaNot', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex:true
+    })
+    .then(() => {
+        console.log('DB Connected');
+    })
+    .catch(() => {
+        console.log(err);
+    });
+}
 
-    async connect(){
-        mongoose.connect('mongodb://localhost/PedidosYaNot', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        })
-        .then(db => console.log('DB connected'))
-        .catch(err => console.log(err));
-    }
-
-    async disconnect(){
-        mongoose.connection.close();
-    }
-} 
-
+exports.disconnectDB = async() =>{
+    mongoose.connection.close()
+    .then(() =>{
+        console.log("DB Closed");
+    } )
+    .catch((err) =>{
+        console.log(err)
+    });
+}
 

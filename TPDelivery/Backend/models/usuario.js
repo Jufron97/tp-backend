@@ -9,7 +9,7 @@ var UsuarioSchema = new mongoose.Schema({
     direccion: { type: String },
     telefono: { type: String },
     email: { type: String },
-    // pedidos: { type : [Object]}
+     pedidos: { type : [Object]}
 });
 
 var Usuario = mongoose.model('usuario', UsuarioSchema);
