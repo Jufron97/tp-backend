@@ -4,7 +4,8 @@ exports.connectDB = async() => {
     mongoose.connect('mongodb://localhost/PedidosYaNot', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex:true
+        useCreateIndex:true,
+        useFindAndModify:true
     })
     .then(() => {
         console.log('DB Connected');
