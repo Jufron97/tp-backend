@@ -10,7 +10,7 @@ exports.addLocal = async (req, res) => {
     console.log(req.body);
     new Local(req.body).save()
         .then((local) =>{ 
-            local.imagePath += req.file.filename;
+            //local.imagePath += req.file.filename;
             res.send(local);
         })
         .catch((error) =>{
@@ -301,15 +301,14 @@ exports.editProducto = async (req, res) => {
         _id: req.params.idLoc,
     })
         .then((local) =>{
-            let producto=new Producto(req.body)
             //FALTA ESTO DE LA IMAGEN
             //const imagePath = '/uploads/' + req.file.filename;
             //producto.imagePath = imagePath;
-            
-            prod=local.productos.find(prod => prod.nombre==req.params.nomProd);
-            
+            //ESTO DEBERIA SER CON EL ID
+            local.productos = local.productos.filter(prod => prod.nombre != req.params.nomProd)
+            local.productos.push(new Producto(req.body));
             Local.findByIdAndUpdate(
-                { _id: local._id}, 
+                { _id: local._id }, 
                 local
             )
                 .then((local)=>{
@@ -317,12 +316,12 @@ exports.editProducto = async (req, res) => {
                 })
                 .finally(() =>{
                     db.disconnectDB();
-                }) 
+                })
         })
         .catch((error) =>{
             console.log(error);
             res.status(500).send('Hubo un error al agregar el producto');
-        });
+        })
     /*
     try {
         const { nombre, descripcion, categoria, subcategoria, precio } = req.body;
