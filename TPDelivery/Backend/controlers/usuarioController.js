@@ -24,14 +24,16 @@ exports.signIn = async (req, res) => {
         usuario: req.body.usuario,
         contrasena: req.body.contrasena
     })
-        .then((user)=>{
-            console.log(user);
-            const token = jwt.sign({ _id: user._id }, 'secretKey');
-            return res.status(200).json({token});    
+        .then((user) =>{
+            if(user){
+                const token = jwt.sign({ _id: user._id }, 'secretKey');
+                return res.status(200).json({token});  
+            }
+            return res.status(401).send("El usuario y/o contraseña ingresados no son correctos");
         })
         .catch(error =>{
             console.log(error);
-            res.status(401).send("El usuario y/o contraseña ingresados no son correctos")
+            res.status(401).send("Error al realizar el login");
         })
         .finally(() =>{
             db.disconnectDB();           

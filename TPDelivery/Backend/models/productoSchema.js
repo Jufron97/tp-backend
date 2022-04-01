@@ -7,7 +7,7 @@ var ProductoSchema = new mongoose.Schema({
   subcategoria: String ,
   precio: Number,
   fechaCreacion: { type: Date, default: Date.now },
-  imagePath: String
+  imagePath: { type: String, default: '/uploads/'}
 });
 
 var Producto = mongoose.model('Producto', ProductoSchema);

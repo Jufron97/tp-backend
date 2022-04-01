@@ -7,7 +7,6 @@ const db = require('./DB');
 
 exports.addLocal = async (req, res) => {
     db.connectDB();
-    console.log(req.body);
     new Local(req.body).save()
         .then((local) =>{ 
             //local.imagePath += req.file.filename;
@@ -302,11 +301,13 @@ exports.editProducto = async (req, res) => {
     })
         .then((local) =>{
             //FALTA ESTO DE LA IMAGEN
+            let newProduct= new Producto(req.body);
+            //newProduct.imagePath+= req.file.filename
             //const imagePath = '/uploads/' + req.file.filename;
             //producto.imagePath = imagePath;
             //ESTO DEBERIA SER CON EL ID
             local.productos = local.productos.filter(prod => prod.nombre != req.params.nomProd)
-            local.productos.push(new Producto(req.body));
+            local.productos.push(newProduct);
             Local.findByIdAndUpdate(
                 { _id: local._id }, 
                 local
@@ -352,6 +353,20 @@ exports.editProducto = async (req, res) => {
 };
 
 exports.findLocalesByName = async (req, res) => {
+    db.connectDB();
+    await Local.find({ nombre: { $regex: req.params.name, $options: 'i' } })
+        .then((locales) =>{
+            res.json(locales);
+        })
+        .catch((error) =>{
+            console.error(error);
+            res.status(500).send('Hubo un error');
+        })
+        .finally(() =>{
+            db.disconnectDB();
+        })
+        
+    /*
     try {
         let nom = req.params.name;
         let locales = await Local.find({ nombre: { $regex: nom, $options: 'i' } });
@@ -359,7 +374,7 @@ exports.findLocalesByName = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).send('Hubo un error');
-    }
+    }*/
 };
 
 exports.findProductosByName = async (req, res) => {
@@ -372,7 +387,7 @@ exports.findProductosByName = async (req, res) => {
         let productos = local.productos.filter(({ nombre }) =>
             nombre.match(filter)
         );
-        console.log(productos);
+        //console.log(productos);
         res.send(productos);
     } catch (error) {
         console.log(error);
