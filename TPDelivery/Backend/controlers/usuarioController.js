@@ -4,10 +4,10 @@ const db = require('./DB');
 
 exports.addUsuario = async (req, res) => {
     db.connectDB();
-    await new Usuario(req.body).save()
+    new Usuario(req.body).save()
         .then((user)=>{
             const token = jwt.sign({ _id: user._id }, 'secretKey');
-            return res.status(200).json({ token });           
+            return res.status(200).send({ token });           
         })
         .catch(error =>{
             console.log(error)
@@ -20,11 +20,12 @@ exports.addUsuario = async (req, res) => {
 
 exports.signIn = async (req, res) => {
     db.connectDB();
-    await Usuario.findOne({
+    Usuario.findOne({
         usuario: req.body.usuario,
         contrasena: req.body.contrasena
     })
         .then((user)=>{
+            console.log(user);
             const token = jwt.sign({ _id: user._id }, 'secretKey');
             return res.status(200).json({token});    
         })
@@ -40,10 +41,11 @@ exports.signIn = async (req, res) => {
 exports.listUsuario = async (req, res) => {
     db.connectDB()
     //ESTO CON EL WEBTOKEN SE PUEDE VALIDAR PARA SABER SI ES EL ADMIN O NO
-    await Usuario.find()
+    Usuario.find()
         .then(usuarios =>{
             usersFilter = usuarios.filter(user => user.usuario !="admin")
             res.send(usersFilter);
+            //res.send(usuarios);
         })
         .catch((error) =>{
             console.log(error);
@@ -58,7 +60,7 @@ exports.getUsuario = async (req, res) => {
     db.connectDB();
     //VER SI ESTO SE PUEDE RESUMIR DE OTRA FORMA---CREO QUE SE PUEDE CAMBIAR CON EL ID QUE VIENE CON EL REQUEST
     const payload = jwt.verify(req.params.id, 'secretKey');
-    await Usuario.findById(payload)
+    Usuario.findById(payload)
         .then((user) => {
             if(user){
                 return res.json(user)
@@ -76,11 +78,11 @@ exports.getUsuario = async (req, res) => {
 
 exports.deleteUsuario = async (req, res) => {
     db.connectDB();
-    await Usuario.findOneAndRemove(req.params.id)
-        .then((user) =>{
-            if(user){
-                res.status(404).json({ msg: 'No existe el usuario' });
-            }
+    Usuario.findOneAndRemove({ 
+        _id : req.params.id,
+    })
+        .then(() =>{
+            res.status(200).send('Usuario eliminado con exito.');
         })
         .catch((error) =>{
             console.log(error);
@@ -94,8 +96,8 @@ exports.deleteUsuario = async (req, res) => {
 exports.updateUsuario = async (req, res) => {
     db.connectDB();
     //ESTO FALTA TESTEAR SI FUNCIONA
-    await Usuario.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true })
-        .then(()=>{
+    Usuario.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true })
+        .then(()=>{   
             res.status(200).json("Usuario Editado");
         })
         .catch((error) =>{

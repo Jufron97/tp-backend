@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-exports.connectDB = async() => {
+exports.connectDB = async () => {
     mongoose.connect('mongodb://localhost/PedidosYaNot', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -8,17 +8,17 @@ exports.connectDB = async() => {
         useFindAndModify:true
     })
     .then(() => {
-        console.log('DB Connected');
+        //console.log('DB Connected');
     })
-    .catch(() => {
+    .catch((err) => {
         console.log(err);
     });
 }
 
-exports.disconnectDB = async() =>{
+exports.disconnectDB = async () =>{
     mongoose.connection.close()
     .then(() =>{
-        console.log("DB Closed");
+        //console.log("DB Closed");
     } )
     .catch((err) =>{
         console.log(err)
