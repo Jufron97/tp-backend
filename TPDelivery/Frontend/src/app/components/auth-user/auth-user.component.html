@@ -1,0 +1,9 @@
+<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedIn">
+    <a class="nav-item nav-link btn btn-link" (click)="auth.logout({ returnTo: document.location.origin })">
+      Cerrar Sesion
+    </a>
+</ng-container>
+
+<ng-template #loggedIn>
+    <a class="nav-item nav-link btn btn-link" (click)="auth.loginWithRedirect()">Iniciar Sesion</a>
+</ng-template>

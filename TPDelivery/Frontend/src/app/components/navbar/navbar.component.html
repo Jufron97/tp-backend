@@ -19,6 +19,9 @@
               {{usuarioService.getUserName()+" - "+ usuarioService.getDireccion()}}</h5>
           </div>
         </div>
+        
+        <app-auth-user class="navbar-nav ms-auto pe-2 me-5"> </app-auth-user>
+
         <div *ngIf="!usuarioService.loggedIn()" class="navbar-nav ms-auto pe-2 me-5">
           <a class="nav-item nav-link btn btn-link" data-bs-toggle="modal" data-bs-target="#SignInModal">Iniciar
             Sesión</a>
@@ -140,3 +143,5 @@
   </div>
 </div>
 <!-- SIGN IN-->
+
+
