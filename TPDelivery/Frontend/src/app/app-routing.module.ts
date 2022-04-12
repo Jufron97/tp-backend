@@ -10,7 +10,8 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { AbmLocalComponent } from './components/abm-local/abm-local.component';
 import { ListPedidoComponent } from './components/list-pedido/list-pedido.component';
 import { ListUsuarioComponent } from './components/list-usuario/list-usuario.component';
-import { AuthGuard } from "./auth.guard";
+
+import { Auth0Guard } from './guards/auth0.guard';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -20,9 +21,9 @@ const routes: Routes = [
   { path: 'editar-producto/:idL/:idP', component: CrearProductoComponent },
   { path: 'locales', component: LocalesComponent },
   { path: 'productos', component: ProductosComponent },
-  { path: 'abm-local', component: AbmLocalComponent, canActivate: [AuthGuard] },
-  { path: 'list-pedido', component: ListPedidoComponent, canActivate: [AuthGuard] },
-  { path: 'list-usuario', component: ListUsuarioComponent, canActivate: [AuthGuard] },
+  { path: 'abm-local', component: AbmLocalComponent, canActivate: [Auth0Guard] },
+  { path: 'list-pedido', component: ListPedidoComponent, canActivate: [Auth0Guard] },
+  { path: 'list-usuario', component: ListUsuarioComponent, canActivate: [Auth0Guard] },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 
 ];

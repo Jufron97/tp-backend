@@ -1,3 +1,4 @@
+//-------- Modulos --------
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,11 +8,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthGuard } from "./auth.guard";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
-// Import the module from the SDK
+//-------- Modulos --------
+//-------- Auth 0--------
 import { AuthModule } from '@auth0/auth0-angular';
-
+import { Auth0Guard } from './guards/auth0.guard';
+//-------- Auth 0--------
 //-------- Componentes--------
 import { AppComponent } from './app.component';
 import { CrearLocalComponent } from './components/crear-local/crear-local.component';
@@ -29,7 +31,6 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { ListUsuarioComponent } from './components/list-usuario/list-usuario.component';
 import { ListPedidoComponent } from './components/list-pedido/list-pedido.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { AuthUserComponent } from './components/auth-user/auth-user.component';
 //-------- Componentes--------
 
 @NgModule({
@@ -50,8 +51,6 @@ import { AuthUserComponent } from './components/auth-user/auth-user.component';
     ListUsuarioComponent,
     ListPedidoComponent,
     CarouselComponent,
-    AuthUserComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -70,10 +69,9 @@ import { AuthUserComponent } from './components/auth-user/auth-user.component';
       domain: 'dev-3h2tiekd.us.auth0.com',
       clientId: 'KaaqTbntsrRaG9wHZ3IZsTzGk1FcLWb1'
     }),
-
   ],
   providers: [
-    AuthGuard,
+    Auth0Guard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

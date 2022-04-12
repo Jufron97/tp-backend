@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { addSyntheticLeadingComment } from 'typescript';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +8,11 @@ import { addSyntheticLeadingComment } from 'typescript';
 
 export class AppComponent {
 
-onInit(){
-  
-  google.maps.event.addDomListener(window,"load",function(){
+  onInit(){
 
-  });
-}
+    google.maps.event.addDomListener(window,"load",function(){
+    });
+  }
 
 }
 

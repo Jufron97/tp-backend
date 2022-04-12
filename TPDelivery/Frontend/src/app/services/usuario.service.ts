@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
+import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario';
 
 @Injectable({
@@ -21,7 +23,10 @@ export class UsuarioService {
     email: '',
   };
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    public auth:AuthService) {
   }
 
   signUp(usu: Usuario) {
