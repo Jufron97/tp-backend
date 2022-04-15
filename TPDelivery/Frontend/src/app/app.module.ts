@@ -31,6 +31,8 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { ListUsuarioComponent } from './components/list-usuario/list-usuario.component';
 import { ListPedidoComponent } from './components/list-pedido/list-pedido.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ProfileComponent } from './components/profile/profile.component';
 //-------- Componentes--------
 
 @NgModule({
@@ -51,6 +53,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     ListUsuarioComponent,
     ListPedidoComponent,
     CarouselComponent,
+    LoadingComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

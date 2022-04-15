@@ -12,6 +12,8 @@ import { ListPedidoComponent } from './components/list-pedido/list-pedido.compon
 import { ListUsuarioComponent } from './components/list-usuario/list-usuario.component';
 
 import { Auth0Guard } from './guards/auth0.guard';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -21,11 +23,12 @@ const routes: Routes = [
   { path: 'editar-producto/:idL/:idP', component: CrearProductoComponent },
   { path: 'locales', component: LocalesComponent },
   { path: 'productos', component: ProductosComponent },
-  { path: 'abm-local', component: AbmLocalComponent, canActivate: [Auth0Guard] },
-  { path: 'list-pedido', component: ListPedidoComponent, canActivate: [Auth0Guard] },
-  { path: 'list-usuario', component: ListUsuarioComponent, canActivate: [Auth0Guard] },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
-
+  { path: 'abm-local', component: AbmLocalComponent, canActivate: [AuthGuard] },
+  { path: 'list-pedido', component: ListPedidoComponent, canActivate: [AuthGuard] },
+  { path: 'list-usuario', component: ListUsuarioComponent, canActivate: [AuthGuard] },
+  { path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
+  
 ];
 
 @NgModule({

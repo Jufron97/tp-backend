@@ -23,18 +23,12 @@ export class NavbarComponent implements OnInit {
 
   }
   
-  datosUsuario(){
-    this.authService.getUser().subscribe(user =>{console.log(user)});
-    //this.authService.idTokenClaims$.subscribe(data => console.log(data))
-  }
-
   cerrarSesion(){
     this.authService.logout();
   }
 
   iniciarSesion(){
-    this.authService.loginWithPopup();
+    this.authService.loginWithRedirect();
   }
-
-
+  
 }

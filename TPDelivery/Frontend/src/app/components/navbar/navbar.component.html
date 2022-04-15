@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="container">
           <div class="navbar-nav me-auto ps-2" *ngIf="authService.isAuthenticated$ | async" >
-            <ng-container  >
+            <ng-container *ngIf="">
               <!-- ACA HABRIA QUE VER ALGO DE LOS ROLES DEL USUARIO Y SI ESTA HABILITADO PARA VER O NO ESTO -->
               <a class="nav-item nav-link" routerLink="/abm-local" routerLinkActive="active">ABM-Local-Productos</a>
               <a class="nav-item nav-link" routerLink="/list-usuario" routerLinkActive="active">Listado Usuarios</a>
@@ -24,16 +24,18 @@
       </div>
     </div>
     <div class="navbar-nav ">
-        <!--LOGOUT-->
         <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
+          <!--LOGOUT-->
           <a class="nav-item nav-link btn btn-link" (click)="cerrarSesion()">
             Cerrar Sesion
           </a>
-          <a class="nav-item nav-link btn btn-link" (click)="datosUsuario()">
+          <!--LOGOUT-->
+          <!--PERFIL-->
+          <a class="nav-item nav-link btn btn-link" routerLink="/perfil" routerLinkActive="active">
             Perfil
           </a>
-        </ng-container>
-        <!--LOGOUT-->
+          <!--PERFIL-->
+        </ng-container>   
         <!--LOGIN-->
         <ng-template #loggedOut>
           <a class="nav-item nav-link btn btn-link" (click)="iniciarSesion()">Iniciar Sesion</a>
