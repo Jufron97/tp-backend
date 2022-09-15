@@ -30,9 +30,12 @@
         <div *ngFor="let local of localService.locales" (click)="navigateProductos(local)" class="card mb-3"
           style="max-width: 90%;">
           <div class="row g-0">
+            <!--
+              ACA HAY PROBLEMAS CON LAS IMAGENES VER SI SE PUEDE RESOLVER
             <div class="col-md-4">
               <img *ngIf="local.imagePath" [src]="'http://localhost:4000' + local.imagePath" class="img-fluid rounded-start" alt="El local no posee imagen">
             </div>
+            -->
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">{{ local.nombre }}</h5>

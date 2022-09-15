@@ -1,4 +1,4 @@
-const Local = require('../models/local');
+const Local = require('../models/localSchema');
 const Producto = require('../models/productoSchema');
 const { unlink } = require('fs-extra');
 const path = require('path');
@@ -38,9 +38,8 @@ exports.listLocal = async (req, res) => {
 
 exports.nameLocal = async (req, res) => {
     db.connectDB();
-    Local.findOne({ '_id': req.params.id }, 'nombre')
+    Local.findOne({ _id: req.params.id }, 'nombre')
         .then((local) =>{
-            console.log(local.nombre);
             res.send(local.nombre);
         })
         .catch((error)=>{
@@ -109,6 +108,7 @@ exports.deleteLocal = async (req, res) => {
 
 exports.selectLocal = async (req, res) => {
     db.connectDB();
+    console.log(req.params)
     Local.findById(
         {_id:req.params.id}
     )
@@ -235,10 +235,11 @@ exports.deleteProducto = async (req, res) => {
 
 exports.listProducto = async (req, res) => {
     db.connectDB();
-    Local.findById({
+    await Local.findById({
         _id: req.params.id
     })
         .then((local) =>{
+            
             res.send(local.productos);
         })
         .catch((error) =>{

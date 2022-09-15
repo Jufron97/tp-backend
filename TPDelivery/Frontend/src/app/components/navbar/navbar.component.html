@@ -11,8 +11,9 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="container">
           <div class="navbar-nav me-auto ps-2" *ngIf="authService.isAuthenticated$ | async" >
-            <ng-container *ngIf="">
-              <!-- ACA HABRIA QUE VER ALGO DE LOS ROLES DEL USUARIO Y SI ESTA HABILITADO PARA VER O NO ESTO -->
+            <!-- <ng-container *ngIf=""> -->
+            <!-- ACA HABRIA QUE VER ALGO DE LOS ROLES DEL USUARIO Y SI ESTA HABILITADO PARA VER O NO ESTO -->
+            <ng-container>
               <a class="nav-item nav-link" routerLink="/abm-local" routerLinkActive="active">ABM-Local-Productos</a>
               <a class="nav-item nav-link" routerLink="/list-usuario" routerLinkActive="active">Listado Usuarios</a>
             </ng-container>

@@ -25,7 +25,9 @@
                     <div class="row row-cols-1 row-cols-md-3 g-4">
                         <div *ngFor="let producto of localService.productos" class="col">
                             <div class="card h-100">
-                                <img *ngIf="producto.imagePath" [src]="'http://localhost:4000' + producto.imagePath" class="card-img-top" alt="El producto no posee imagen">
+                                <!--
+                                      <img *ngIf="producto.imagePath" [src]="'http://localhost:4000' + producto.imagePath" class="card-img-top" alt="El producto no posee imagen">
+                                -->                          
                                 <div class="card-body small">
                                     <h5 class="card-title">{{producto.nombre}}</h5>
                                     <p class="card-text" style="max-width:100%;">{{producto.descripcion}}</p>
