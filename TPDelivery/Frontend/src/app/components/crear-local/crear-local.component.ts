@@ -23,22 +23,28 @@ export class CrearLocalComponent implements OnInit {
 
   photoSelected: any;
 
-  constructor(private fb: FormBuilder, private router: Router, private toastr: ToastrService, public localService: LocalService, private aRouter: ActivatedRoute, private _messageService: MessageService) {
-    this.localForm = this.fb.group({
-      nombre: ['', Validators.required],
-      descripcion: ['', Validators.required],
-      direccion: ['', Validators.required],
-      costoEnvio: ['', Validators.required],
-      tiempoEnvio: ['', Validators.required],
-    })
-    this._messageService.listen().subscribe((m: any) => {
-      if (m !== "") {
-        this.esEdit = false;
-      }
-      else {
-        this.esEdit = false
-      }
-    })
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    private toastr: ToastrService, 
+    public localService: LocalService, 
+    private aRouter: ActivatedRoute, 
+    private _messageService: MessageService) {
+      this.localForm = this.fb.group({
+        nombre: ['', Validators.required],
+        descripcion: ['', Validators.required],
+        direccion: ['', Validators.required],
+        costoEnvio: ['', Validators.required],
+        tiempoEnvio: ['', Validators.required],
+      })
+      this._messageService.listen().subscribe((m: any) => {
+        if (m !== "") {
+          this.esEdit = false;
+        }
+        else {
+          this.esEdit = false
+        }
+      })
   }
 
   ngOnInit(): void {

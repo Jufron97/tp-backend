@@ -9,16 +9,18 @@ import { MessageService } from 'src/app/services/message-service.service';
 })
 export class ProductosComponent implements OnInit {
 
-  constructor(public localService: LocalService, private _messageService: MessageService) {
-    this._messageService.listen().subscribe((m: string) => {
-      if(m!==""){
-      console.log(m);
-      this.getProductosName(m);
-    }
-    else{
-      this.getProductos();
-    }
-    })
+  constructor(
+    public localService: LocalService, 
+    private _messageService: MessageService) {
+      this._messageService.listen().subscribe((m: string) => {
+        if(m!==""){
+        console.log(m);
+        this.getProductosName(m);
+      }
+      else{
+        this.getProductos();
+      }
+      })
    }
 
   ngOnInit(): void {
@@ -27,29 +29,26 @@ export class ProductosComponent implements OnInit {
 
   getProductos() {
     if (this.localService.selectedLocal != undefined && this.localService.selectedLocal._id) {
-
       this.localService.getProductos(this.localService.selectedLocal._id).subscribe(
         res => {
           this.localService.productos = res;
         },
         err => console.log(err))
-
-
     }
 
   }
 
-getProductosName(m:string){
+  getProductosName(m:string){
 
-  if (this.localService.selectedLocal != undefined && this.localService.selectedLocal._id) {
+    if (this.localService.selectedLocal != undefined && this.localService.selectedLocal._id) {
 
-    this.localService.getProductosByName(this.localService.selectedLocal._id, m).subscribe(
-      res => {
-        this.localService.productos = res;
-      },
-      err => console.log(err))
+      this.localService.getProductosByName(this.localService.selectedLocal._id, m).subscribe(
+        res => {
+          this.localService.productos = res;
+        },
+        err => console.log(err))
+    }
   }
-}
 
 
 }

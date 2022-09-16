@@ -13,33 +13,9 @@ export class ListUsuarioComponent implements OnInit {
   constructor(public usuarioService: UsuarioService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    //this.getUsuarios();
+    
   }
 
-
-  getUsuarios() {
-    this.usuarioService.getUsuarios().subscribe(
-      data => {
-        this.usuarioService.usuarios = data;
-      },
-      err => {
-        console.log(err);
-      }
-    )
-  }
-  
-
-
-  deleteUsuario(usu: Usuario) {
-    this.usuarioService.deleteUsuario(<string>usu._id).subscribe(
-      res => {
-        this.toastr.error('El usuario fue eliminado', 'Usuario eliminado');
-        this.getUsuarios();
-      },
-      err => {
-        console.log(err);
-      }
-    )
-  }
+  //ACA VAN TODOS LOS METODOS DEL AUTH 0
 
 }

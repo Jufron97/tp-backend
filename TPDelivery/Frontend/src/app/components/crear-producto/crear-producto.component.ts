@@ -22,24 +22,30 @@ export class CrearProductoComponent implements OnInit {
   imagen: any;
   photoSelected: any;
 
-  constructor(private fb: FormBuilder, private router: Router, private toastr: ToastrService, public localService: LocalService, private aRouter: ActivatedRoute, private _messageService: MessageService) {
-    this.productoForm = this.fb.group({
-      nombre: ['', Validators.required],
-      descripcion: ['', Validators.required],
-      categoria: ['', Validators.required],
-      subcategoria: ['', Validators.required],
-      precio: ['', Validators.required]
-    })
-    this._messageService.listen().subscribe((m: any) => {
-      if (m !== "") {
-        this.esEdit = true;
-        this.nomProd = m;
-      }
-      else {
-        this.esEdit = false
-      }
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    private toastr: ToastrService, 
+    public localService: LocalService, 
+    private aRouter: ActivatedRoute, 
+    private _messageService: MessageService) {
+      this.productoForm = this.fb.group({
+        nombre: ['', Validators.required],
+        descripcion: ['', Validators.required],
+        categoria: ['', Validators.required],
+        subcategoria: ['', Validators.required],
+        precio: ['', Validators.required]
+      })
+      this._messageService.listen().subscribe((m: any) => {
+        if (m !== "") {
+          this.esEdit = true;
+          this.nomProd = m;
+        }
+        else {
+          this.esEdit = false
+        }
 
-    })
+      })
   }
 
   ngOnInit(): void {

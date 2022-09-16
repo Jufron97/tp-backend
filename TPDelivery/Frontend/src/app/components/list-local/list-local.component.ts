@@ -21,9 +21,14 @@ export class ListLocalComponent implements OnInit {
   listLocal: Local[] = [];
   toggleProductos: boolean = false;
 
-  constructor(private localService: LocalService, private toastr: ToastrService, config: NgbModalConfig, private modalService: NgbModal, private _messageService: MessageService) {
-    config.backdrop = 'static';
-    config.keyboard = false;
+  constructor(
+    private localService: LocalService, 
+    private toastr: ToastrService, 
+    config: NgbModalConfig, 
+    private modalService: NgbModal, 
+    private _messageService: MessageService) {
+      config.backdrop = 'static';
+      config.keyboard = false;
   }
 
   ngOnInit(): void {

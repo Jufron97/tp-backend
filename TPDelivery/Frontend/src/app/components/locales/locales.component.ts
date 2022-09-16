@@ -11,15 +11,19 @@ import { LocalService } from '../../services/local.service';
 })
 export class LocalesComponent implements OnInit {
 
-  constructor(public localService: LocalService,private router:Router,private route:ActivatedRoute ,private _messageService: MessageService) {
-    this._messageService.listen().subscribe((m: string) => {
-      if(m!==""){
-        console.log(m);
-        this.getLocalesName(m);
-      }
-      else{
-      this.getLocales();
-      }
+  constructor(
+    public localService: LocalService,
+    private router:Router,
+    private route:ActivatedRoute ,
+    private _messageService: MessageService) {
+      this._messageService.listen().subscribe((m: string) => {
+        if(m!==""){
+          console.log(m);
+          this.getLocalesName(m);
+        }
+        else{
+        this.getLocales();
+        }
     })
    }
 

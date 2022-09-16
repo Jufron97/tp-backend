@@ -25,10 +25,14 @@ export class ListProductosComponent implements OnInit {
   @Output() openProductoModal = new EventEmitter<Local>();
   @Output() onFilter = new EventEmitter();
 
-  constructor(public localService: LocalService, private toastr: ToastrService, private aRouter: ActivatedRoute, private _messageService: MessageService) {
-    this._messageService.listen().subscribe((m: any) => {
-      this.ngOnInit();
-    })
+  constructor(
+    public localService: LocalService, 
+    private toastr: ToastrService, 
+    private aRouter: ActivatedRoute, 
+    private _messageService: MessageService) {
+      this._messageService.listen().subscribe((m: any) => {
+        this.ngOnInit();
+      })
   }
 
   ngOnInit(): void {

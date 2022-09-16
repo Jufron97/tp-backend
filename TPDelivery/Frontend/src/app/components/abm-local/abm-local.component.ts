@@ -13,9 +13,8 @@ export class AbmLocalComponent implements OnInit {
   toggleProductos: boolean = false;
   selectedLocal: any;
 
-
   constructor() {
-}
+  }
 
   ngOnInit(): void {
   }
