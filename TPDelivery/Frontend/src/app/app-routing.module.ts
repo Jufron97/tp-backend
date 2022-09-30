@@ -14,6 +14,7 @@ import { ListUsuarioComponent } from './components/list-usuario/list-usuario.com
 import { Auth0Guard } from './guards/auth0.guard';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { ExternalApiComponent } from './components/external-api/external-api.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'list-pedido', component: ListPedidoComponent, canActivate: [AuthGuard] },
   { path: 'list-usuario', component: ListUsuarioComponent, canActivate: [AuthGuard] },
   { path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'external-api', component: ExternalApiComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
   
 ];

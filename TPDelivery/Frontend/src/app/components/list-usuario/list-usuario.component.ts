@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-list-usuario',
@@ -10,7 +11,11 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ListUsuarioComponent implements OnInit {
 
-  constructor(public usuarioService: UsuarioService, private toastr: ToastrService) { }
+  constructor(
+    public usuarioService: UsuarioService, 
+    public authService: AuthService,
+    private toastr: ToastrService){ 
+    }
 
   ngOnInit(): void {
     

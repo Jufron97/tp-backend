@@ -9,9 +9,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptorService } from "./services/token-interceptor.service";
+import { environment as env } from '../environments/environment';
 //-------- Modulos --------
 //-------- Auth 0--------
-import { AuthModule } from '@auth0/auth0-angular';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { Auth0Guard } from './guards/auth0.guard';
 //-------- Auth 0--------
 //-------- Componentes--------
@@ -33,6 +34,8 @@ import { ListPedidoComponent } from './components/list-pedido/list-pedido.compon
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ButtonLoginComponent } from './components/button-login/button-login.component';
+import { ExternalApiComponent } from './components/external-api/external-api.component';
 //-------- Componentes--------
 
 @NgModule({
@@ -55,6 +58,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     CarouselComponent,
     LoadingComponent,
     ProfileComponent,
+    ButtonLoginComponent,
+    ExternalApiComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,15 +75,17 @@ import { ProfileComponent } from './components/profile/profile.component';
     }),
     // Import the module into the application, with configuration
     AuthModule.forRoot({
-      domain: 'dev-3h2tiekd.us.auth0.com',
-      clientId: 'KaaqTbntsrRaG9wHZ3IZsTzGk1FcLWb1'
+      ...env.auth,
+      httpInterceptor: {
+        allowedList: [`${env.dev.serverUrl}/api/messages/protected-message`],
+      },
     }),
   ],
   providers: [
     Auth0Guard,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
+      useClass: AuthHttpInterceptor,
       multi: true
     }
   ],
