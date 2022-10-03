@@ -2,5 +2,7 @@
     "domain": "dev-3h2tiekd.us.auth0.com",
     "clientId": "KaaqTbntsrRaG9wHZ3IZsTzGk1FcLWb1",
     "audience": "https://dev-3h2tiekd.us.auth0.com/api/v2/",
-    "serverUrl": "http://localhost:4200"
+    "serverUrl": "http://localhost:4200",
+    "ApiClientId": "SSMtaPbN41oFNAEdNgeFp7Bka6L5tSK0",
+    "ApiClientSecret" : "5sXVlXBJzrMNk3PEoVbaLfp7nrwPA2MwqFEsC2h8hITlgEhaBdVPuMIWrp3gb8nb"
 }

@@ -75,10 +75,7 @@ import { ExternalApiComponent } from './components/external-api/external-api.com
     }),
     // Import the module into the application, with configuration
     AuthModule.forRoot({
-      ...env.auth,
-      httpInterceptor: {
-        allowedList: [`${env.dev.serverUrl}/api/messages/protected-message`],
-      },
+      ...env.auth
     }),
   ],
   providers: [

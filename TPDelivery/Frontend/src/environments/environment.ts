@@ -8,6 +8,8 @@ export const environment = {
     clientId: auth0_config.clientId,
     redirectUri: window.location.origin,   
     audience : auth0_config.audience,
+    ApiClientSecret: auth0_config.ApiClientSecret,
+    ApiClientId: auth0_config.ApiClientId
   },
   dev: {
     serverUrl : auth0_config.audience,
