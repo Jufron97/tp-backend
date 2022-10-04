@@ -8,7 +8,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 import { AppRoutingModule } from './app-routing.module';
-import { TokenInterceptorService } from "./services/token-interceptor.service";
 import { environment as env } from '../environments/environment';
 //-------- Modulos --------
 //-------- Auth 0--------
@@ -35,7 +34,6 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ButtonLoginComponent } from './components/button-login/button-login.component';
-import { ExternalApiComponent } from './components/external-api/external-api.component';
 //-------- Componentes--------
 
 @NgModule({
@@ -59,7 +57,6 @@ import { ExternalApiComponent } from './components/external-api/external-api.com
     LoadingComponent,
     ProfileComponent,
     ButtonLoginComponent,
-    ExternalApiComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +72,7 @@ import { ExternalApiComponent } from './components/external-api/external-api.com
     }),
     // Import the module into the application, with configuration
     AuthModule.forRoot({
-      ...env.auth
+      ...env.dev
     }),
   ],
   providers: [

@@ -3,7 +3,7 @@
         <div class="col-xl-12 offset-md-0">
             <div class="card">
                 <div  class="card-body text-center">
-                    <span class="titulo">Listado de usuarios</span>
+                    <h5 class="titulo">Listado de usuarios</h5>                
                     <table *ngIf="users.length > 0" class="table table-striped">
                         <thead>
                             <tr>
@@ -20,12 +20,9 @@
                                 <td>{{ usuario.username }}</td>
                                 <td>{{ usuario.user_metadata.adress }}</td>
                                 <td>{{ usuario.user_id }}</td>  
-                                <td width='70px'>
-                                     <!--
-                                    <i (click)="deleteUsuario(usuario)" class="fas fa-trash text-danger"></i>
-                                    <i class="fas fa-edit text-primary" (click)="open(content,local._id)"></i>
-                                    <i class="fas fa-trash text-danger" (click)="open(content,local._id)"></i>
-                                    -->
+                                <td width='70px'>                                   
+                                <i (click)="deleteUser(usuario.user_id)" class="fas fa-trash text-danger"></i>
+                                <i (click)="editUser()" class="fas fa-edit text-primary"></i>
                                 </td>
                             </tr>
                         </tbody>

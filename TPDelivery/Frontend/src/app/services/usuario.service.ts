@@ -1,96 +1,53 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Usuario } from '../models/usuario';
+import { AuthService } from '@auth0/auth0-angular';
+import { environment as env } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  url = 'http://localhost:4000/';
+  urlBackend = 'http://localhost:4000/';
 
-  usuarios: Usuario[] = [];
-  selectedUsuario: Usuario = {
-    _id: '',
-    usuario: '',
-    contrasena: '',
-    nombreApellido: '',
-    telefono: '',
-    direccion: '',
-    email: '',
-  };
+  users: any[] = [];
+  tokenAPI:any;
 
   constructor(
-    private http: HttpClient, 
-    private router: Router) {
+    private authService: AuthService,
+    private http: HttpClient){
   }
 
-  signUp(usu: Usuario) {
-    return this.http.post<any>(this.url + 'user' + '/registro-usuario', usu)
+  private getToken(){
+    let body = { 
+      'grant_type': "client_credentials",
+      "client_id": env.dev.ApiClientId,
+      "client_secret": env.dev.ApiClientSecret,
+      'audience': env.dev.audience
+    }
+    this.http.post("https://"+`${env.dev.domain}`+"/oauth/token", body)
+    .subscribe(token => {
+      return token})   
   }
 
-  signIn(usu: Usuario) {
-    return this.http.post<any>(this.url + 'user' + '/iniciar-sesion', usu)
-  }
-
-  getUsuarios() {
-    return this.http.get<Usuario[]>(this.url + 'user' + '/list-usuario')
-  }
-
-  getUsuario(id: string) {
-    return this.http.get(this.url + 'user/' + id + '/get-usuario')
-  }
-
-  deleteUsuario(id: string) {
-    return this.http.delete<Usuario>(this.url + 'user/' + id + '/delete-usuario')
-  }
-
-  updateUsuario(id: string, usu: Usuario) {
-    return this.http.put<any>(this.url + 'user/' + id + '/update-usuario', usu)
-  }
-
-
-  loggedIn() {
-    if (localStorage.getItem('token')) {
-      return true;
-    } else return false;
-  }
-
-  getToken() {
-    if (localStorage.getItem('token')) {
-      return localStorage.getItem('token')
-    } return '';
-  }
-
-  getUser() {
-    return JSON.parse(<string>localStorage.getItem('usuario'));
-  }
-
-  getUserName() {
-    let usu: Usuario = JSON.parse(<string>localStorage.getItem('usuario'));
-    if (usu) {
-      return usu.usuario;
-    } return '';
-  }
-
-  getDireccion() {
-    let usu: Usuario = JSON.parse(<string>localStorage.getItem('usuario'));
-    if (usu) {
-      return usu.direccion;
-    } return '';
-  }
-
-  logOut() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('usuario');
-    this.router.navigate(['/']);
+  public getUsers() {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ this.tokenAPI.access_token
+      })
+    };
+    this.authService.getAccessTokenWithPopup
+    return this.http.get(`${env.dev.audience}`+"users", httpOptions)        
   }
 
   getPedidos(){
     console.log("Pedidos consultados");
     //Aca hay que ir al arreglo del usuario y tomar los pedidos que esten en pendientes y que sean menores la fecha
-    return this.http.get<any>(this.url + 'user' + '/list-pedidos')
+    return this.http.get<any>(this.urlBackend + 'user' + '/list-pedidos')
   }
 
 }
+
+
