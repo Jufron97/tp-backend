@@ -1,10 +1,38 @@
+<div class="input-group container-fluid mt-2 pt-2">
+    <div class="form-outline">
+      <input type="search" id="form1" class="form-control" />
+      <label class="form-label" for="form1">Search</label>
+    </div>
+    <button type="button" class="btn btn-primary">
+      <i class="fas fa-search"></i>
+    </button>
+</div>
+<div class="input-group container-fluid mt-2 pt-2">
+    <div class="form-outline">
+      <input type="search" id="form1" class="form-control" />
+      <label class="form-label" for="form1">Search</label>
+    </div>
+    <button type="button" class="btn btn-primary">
+      <i class="fas fa-search"></i>
+    </button>
+</div>
+<div class="input-group container-fluid mt-2 pt-2">
+    <div class="form-outline">
+      <input type="search" id="form1" class="form-control" />
+      <label class="form-label" for="form1">Search</label>
+    </div>
+    <button type="button" class="btn btn-primary">
+      <i class="fas fa-search"></i>
+    </button>
+</div>
 <div class="container-fluid mt-2 pt-2">
     <div class="row justify-content-center align-items-center">
         <div class="col-xl-12 offset-md-0">
             <div class="card">
-                <div  class="card-body text-center">
-                    <h5 class="titulo">Listado de usuarios</h5>                
-                    <table *ngIf="users.length > 0" class="table table-striped">
+                <div *ngIf="users.length > 0" class="card-body text-center">
+                    <h5 class="titulo">Listado de usuarios</h5>
+                    <!--TABLE-->                                 
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Email</th>
@@ -25,10 +53,32 @@
                                 <i (click)="editUser(usuario.user_id)" class="fas fa-edit text-primary"></i>
                                 </td>
                             </tr>
-                        </tbody>
+                        </tbody>               
                     </table>
+                    <!--TABLE-->    
+                    <!--PAGINATION-->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Anterior">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" >1</a></li>
+                            <li class="page-item"><a class="page-link" >2</a></li>
+                            <li class="page-item"><a class="page-link">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link"  aria-label="Siguiente">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!--PAGINATION-->                        
+                </div>     
+                <div class="card-body text-center">
                     <h5 *ngIf="users.length <= 0">No hay usuarios para mostrar</h5>
-                </div>
+                </div>       
             </div>
         </div>
     </div>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import { ToastrService } from 'ngx-toastr';
-import { ButtonLoginComponent } from '../button-login/button-login.component';
+
 
 @Component({
   selector: 'app-navbar',
@@ -11,9 +9,7 @@ import { ButtonLoginComponent } from '../button-login/button-login.component';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(
-    private router: Router, 
-    private toastr: ToastrService, 
+  constructor( 
     public authService:AuthService) {
   }
 
@@ -21,14 +17,5 @@ export class NavbarComponent implements OnInit {
 
   }
   
-  /*
-  cerrarSesion(){
-    this.authService.logout();
-  }
-
-  iniciarSesion(){
-    this.authService.loginWithRedirect({screen_hint: "signup"});
-  }
-  */
   
 }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { environment as env } from 'src/environments/environment';
 
 @Injectable({
@@ -12,13 +13,8 @@ export class UsuarioService {
   users: any[] = [];
 
   constructor(
+    private authService : AuthService,
     private http: HttpClient){
-      this.httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+ localStorage.getItem("tokenAPI")
-        }),
-      };
     }
 
   private getToken(){
@@ -32,12 +28,18 @@ export class UsuarioService {
     .subscribe((token:any) => {
       localStorage.setItem("tokenAPI", token.access_token)
       localStorage.setItem("scopesAPI",JSON.stringify(token.scope))
-    })   
+    }) 
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ localStorage.getItem("tokenAPI")
+      }),
+    };  
   }
 
   public getUsers() {
     this.getToken();
-    return this.http.get(`${env.dev.audience}`+"users", this.httpOptions)        
+    return this.http.get(`${env.dev.audience}users`, this.httpOptions)        
   }
 
   public deleteUser(userID:any){
@@ -49,6 +51,16 @@ export class UsuarioService {
     this.getToken();
     return this.http.patch(`${env.dev.audience}users/${userID}`,this.httpOptions,body)
   } 
+
+  public getUserData(){
+    this.getToken();
+    return this.http.get(`${env.dev.audience}users`, this.httpOptions)   
+  }
+
+  public getUserRoles(){
+
+    return this.http.get(`${env.dev.audience}users`, this.httpOptions) 
+  }
 
   getPedidos(){
     console.log("Pedidos consultados");
