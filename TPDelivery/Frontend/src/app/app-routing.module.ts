@@ -10,8 +10,6 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { AbmLocalComponent } from './components/abm-local/abm-local.component';
 import { ListPedidoComponent } from './components/list-pedido/list-pedido.component';
 import { ListUsuarioComponent } from './components/list-usuario/list-usuario.component';
-
-import { Auth0Guard } from './guards/auth0.guard';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 

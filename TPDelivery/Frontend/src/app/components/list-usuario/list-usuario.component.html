@@ -22,7 +22,7 @@
                                 <td>{{ usuario.user_id }}</td>  
                                 <td width='70px'>                                   
                                 <i (click)="deleteUser(usuario.user_id)" class="fas fa-trash text-danger"></i>
-                                <i (click)="editUser()" class="fas fa-edit text-primary"></i>
+                                <i (click)="editUser(usuario.user_id)" class="fas fa-edit text-primary"></i>
                                 </td>
                             </tr>
                         </tbody>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-list-usuario',
@@ -14,7 +15,8 @@ export class ListUsuarioComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private http: HttpClient,){  
+    private http: HttpClient,
+    private userService:UsuarioService){  
     }
 
   ngOnInit(): void {
@@ -22,56 +24,30 @@ export class ListUsuarioComponent implements OnInit {
   }
 
   getUsers(): void {
-    //Primera parte se hace un metodo POST para poder obtener el Token y asi obtener los usuarios
-    let body = { 
-      'grant_type': "client_credentials",
-      "client_id": env.dev.ApiClientId,
-      "client_secret": env.dev.ApiClientSecret,
-      'audience': env.dev.audience
-    }
-    this.http.post("https://"+`${env.dev.domain}`+"/oauth/token", body)
-    .subscribe((res:any) => {
-      let httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+ res.access_token
-        })
-      };
-      this.http.get(`${env.dev.audience}`+"users", httpOptions)
-      .subscribe((result:any) => {
-        this.users = result
-      });
-    })
+    this.userService.getUsers().subscribe((usersAPI:any)=>{
+      this.users=usersAPI;
+    });
   }
 
   public deleteUser(userID:any){
     //ESTO FUNCIONA PERO HAY QUE HACER EL MODAL PARA VERIFICAR LA SEGURIDAD
     /*
-    let body = { 
-      'grant_type': "client_credentials",
-      "client_id": env.dev.ApiClientId,
-      "client_secret": env.dev.ApiClientSecret,
-      'audience': env.dev.audience
-    }
-    this.http.post("https://"+`${env.dev.domain}`+"/oauth/token", body)
-    .subscribe((res:any) => {
-      let httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+ res.access_token
-        })
-      };
-      this.http.delete(`${env.dev.audience}users/${userID}`, httpOptions)
-      .subscribe((result:any) => {
-        this.users = result
-      });
-    })
+    this.userService.deleteUser(userID).subscribe((usersAPI:any)=>{
+      this.users=usersAPI;
+    });
     */
     console.log("User delete!");
   }
 
-  public editUser(){
-    this.http.patch
+  public editUser(userID:any){
+    let body; //ACA SE METERIAN TODOS LOS DATOS MODIFICADOS.
+    //ACA SE CARGARIAN LOS DATOS DEL USUARIO A MODIFICAR
+    //ACA SE PASARIA EL FORMULARIO ENTERO EN FORMATO JSON AL SERVICE PARA INSERTARLO  
+    this.userService.editUserByID(userID,body).subscribe((usersAPI:any)=>{
+      this.users=usersAPI;
+    });
     console.log("User edited!");
   }
+
+
 }
